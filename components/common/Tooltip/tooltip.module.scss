@@ -1,0 +1,9 @@
+.tooltip {
+  max-width: 250px !important;
+  background-color: #101828 !important;
+  padding: 8px 12px !important;
+  border-radius: var(--border-radius-sm) !important;
+  :global(.tippy-arrow) {
+    color: #101828 !important;
+  }
+}

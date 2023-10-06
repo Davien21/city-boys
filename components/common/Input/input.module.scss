@@ -1,0 +1,85 @@
+.container {
+  position: relative;
+}
+
+.container .input-container {
+  display: flex;
+  position: relative;
+  border: 1px solid var(--grey-15);
+  background-color: var(--white, #fff);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+}
+
+.container label {
+  color: var(--purple-100, #525183);
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.container input {
+  width: 100%;
+  padding: 12px 16px;
+
+  // font-size: 14px;
+  @media screen and (min-width: 1024px) {
+    padding: 12px 20px;
+  }
+  color: var(--purple-100, #525183);
+
+  // border: 1px solid var(--grey-1);
+}
+
+.container input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.container input:focus {
+  outline: none;
+}
+
+.container.error input {
+  // border-bottom: 1px solid #ffb7b7;
+}
+
+.container.error input {
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    box-shadow: none;
+    -webkit-text-fill-color: none;
+    color: rgba(255, 255, 255, 0.4);
+    background-color: none !important;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  // border-bottom: 1px solid #ffb7b7;
+}
+
+.error-message {
+  // position: absolute;
+  margin-top: 3px;
+  color: var(--red-100, #ff4d4d);
+  font-size: 0.875rem;
+}
+
+.password-svg {
+  cursor: pointer;
+}
+
+.password-svg path {
+  fill: var(--purple-100);
+}
+
+.password-svg:focus {
+  outline: none;
+}
+
+.password-svg:focus path {
+  fill: var(--purple);
+}

@@ -1,0 +1,146 @@
+.container {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  .countdown-container {
+    @apply max-w-[500px] md:max-w-[402px] rounded-lg;
+    border: 4px solid var(--red);
+  }
+  .token-details {
+    @apply rounded-lg bg-red text-white px-5 md:px-9 pt-6 pb-10;
+    position: relative;
+    z-index: 1;
+    margin-left: -4px;
+    margin-right: -3.5px;
+    .stats {
+      span:first-child {
+        font-size: 14px;
+      }
+      span:last-child {
+        font-size: 16px;
+      }
+      @media screen and (min-width: 480px) {
+        span:first-child {
+          font-size: 16px;
+        }
+        span:last-child {
+          font-size: 22px;
+        }
+      }
+    }
+    h2 {
+      color: #fff;
+      font-family: Gilroy;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 110%; /* 37.4px */
+      text-transform: capitalize;
+      @media screen and (min-width: 360px) {
+        font-size: 18px;
+      }
+      @media screen and (min-width: 480px) {
+        font-size: 24px;
+      }
+      @media screen and (min-width: 1024px) {
+        font-size: 34px;
+      }
+    }
+  }
+  .price-container {
+    justify-content: space-between;
+    span {
+      font-size: 12px;
+      @media screen and (min-width: 360px) {
+        font-size: 16px;
+      }
+    }
+    & > div:first-child,
+    & > div:last-child {
+      content: "";
+      height: 25px;
+      padding: 0 16px;
+      @media screen and (min-width: 480px) {
+        padding: 0 28px;
+      }
+      border: 2px solid var(--red-2);
+      border-right: 0;
+      border-top: 0;
+    }
+    & > div:last-child {
+      border-left: 0;
+      border-right: 2px solid var(--red-2);
+    }
+  }
+  .purchase-box {
+    @apply pt-13 pb-10 px-4 md:px-8 rounded-b-lg mt-[-28px];
+    z-index: 0;
+    border: 1px solid #940409;
+    background: rgba(11, 2, 20, 0.4);
+    backdrop-filter: blur(22px);
+  }
+  .pay-input-box {
+    .max-text {
+      display: none;
+      @media screen and (min-width: 360px) {
+        display: block;
+      }
+    }
+    @apply px-3 py-3 isolate rounded-sm border border-red;
+
+    @media screen and (min-width: 360px) {
+      @apply px-5;
+    }
+    z-index: 1;
+    position: relative;
+    background-color: var(--black-2);
+    input {
+      outline: none;
+      border: none !important;
+      width: 100px;
+      color: var(--white, #fff);
+      font-size: 18.625px;
+      font-weight: 600;
+      line-height: normal;
+      background: transparent;
+      caret-color: var(--red) !important;
+      // padding-left: 40px;
+      // text-indent: 10px;
+      padding-left: 2px;
+      padding-right: 6px;
+      margin-left: -5px;
+      display: block;
+
+      &::placeholder {
+        color: var(--grey-2);
+        padding-left: 3px;
+      }
+    }
+  }
+  .receive-input-box {
+    @apply px-5 py-3 isolate rounded-sm border border-transparent;
+    background-color: #140a1a;
+    input {
+      outline: none;
+      border: none !important;
+      width: 100px;
+      color: var(--white, #fff);
+      font-size: 18.625px;
+      font-weight: 600;
+      line-height: normal;
+      background: transparent;
+      caret-color: var(--red) !important;
+      // padding-left: 40px;
+      // text-indent: 10px;
+      padding-left: 2px;
+      padding-right: 6px;
+      margin-left: -5px;
+      display: block;
+
+      &::placeholder {
+        color: var(--grey-2);
+        padding-left: 3px;
+      }
+    }
+  }
+}

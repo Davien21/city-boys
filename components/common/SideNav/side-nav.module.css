@@ -1,0 +1,88 @@
+.side-nav {
+  height: 100vh;
+  overflow: hidden auto;
+  width: 300px;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  z-index: 11;
+  background: #171619;
+}
+
+.side-nav ul {
+  /* display: none; */
+  padding: 25px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  /* margin-top: 50px; */
+  right: 0;
+  width: 300px;
+  overflow: hidden;
+}
+
+.side-nav .social-media {
+  padding: 25px;
+  width: 80%;
+}
+
+.side-nav ul li {
+  list-style: none;
+  cursor: pointer;
+  margin-left: -25px;
+  margin-right: -25px;
+  color: #fff;
+}
+
+.side-nav ul li a {
+  display: block;
+  padding: 24px;
+}
+
+.side-nav ul li a:hover {
+  background: -webkit-linear-gradient(45deg, #00acd6, #00a651 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+.logo {
+  color: var(--secondary-color);
+  position: absolute;
+  z-index: 1;
+  left: 1.5rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  top: 1.6rem;
+  cursor: pointer;
+}
+
+.menu_toggle,
+.menu_toggle:focus {
+  outline: none;
+  border: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  background: transparent;
+  cursor: pointer;
+  /* position: absolute; */
+  z-index: 1;
+  right: 1.5rem;
+  top: 1.4rem;
+  padding: 0.5rem;
+}
+
+.menu_toggle svg path {
+  stroke: #fff;
+}
+
+@media screen and (min-width: 576px) {
+  .menu_toggle {
+    top: 2.7rem;
+  }
+  .logo {
+    top: 2.6rem;
+  }
+}

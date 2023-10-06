@@ -1,0 +1,19 @@
+.container {
+  height: 16px;
+  border-radius: 50px;
+  width: 100%;
+  border-radius: 50px;
+  border: 2px solid #fff;
+  background: #d9d9d9;
+  & > div {
+    height: 100%;
+    border-radius: 50px;
+    background: linear-gradient(
+      132deg,
+      #00fff8 0%,
+      #142f5b 44.51%,
+      #d8375b 85.42%
+    );
+    transition: all 0.3s ease-in-out;
+  }
+}

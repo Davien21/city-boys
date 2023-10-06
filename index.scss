@@ -1,0 +1,174 @@
+/** @format */
+
+@tailwindcss /base;
+
+@tailwindcss /components;
+
+@tailwindcss /utilities;
+
+// @import url("https://fonts.cdnfonts.com/css/forty-script");
+
+// @import url("https://fonts.cdnfonts.com/css/agency-fb");
+
+// @import url("https://fonts.cdnfonts.com/css/gilroy-bold");
+
+@font-face {
+  font-family: "Agency FB";
+  src: url("./fonts/AgencyFB.woff2") format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Agency FB";
+  src: url("./fonts/AgencyFB-Bold.woff2") format("woff2");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Forty Script";
+  src: url("./fonts/Forty-Script.woff2") format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("./fonts/Gilroy-Regular.woff2") format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("./fonts/Gilroy-Bold.woff2") format("woff2");
+  font-weight: 600;
+}
+
+:root {
+  /* Color settings */
+  --black: #0b0214;
+  --black-2: #160526;
+  --white: #fff;
+  --grey-1: #f2f2f2;
+  --grey-2: #9c9c9c;
+  --grey-3: #565656;
+  --blue-1: #12d0f1;
+  --blue-2: #3e95e7;
+  --green: #9bae05;
+  --grey-15: #e7e7ed;
+  --purple: #6554af;
+  --yellow: #e5c209;
+  --purple-100: #525183;
+  --purple-900: #180229;
+  --orange: #ffbf59;
+  --red: #940409;
+  --red-2: #a44145;
+  --red-3: #DB3316;
+  --red-4: #D8375B;
+  /* Font settings */
+  --primary-font: "Gilroy", helvetica;
+  --secondary-font: "Agency FB", helvetica;
+  --header-font: "Forty Script", sans-serif;
+
+  --border-radius-sm: 8px;
+  --border-radius-md: 22px;
+  --border-radius-lg: 30px;
+  --border-radius-xl: 42px;
+  --letter-spacing-lg: 0.5rem;
+  --letter-spacing-md: 0.2rem;
+  /* Z-Index settings */
+  --header-z-index: 1000;
+  --sidebar-z-index: 1500;
+  --form-z-index: 2000;
+  --overlay-z-index: 2000;
+  --modal-z-index: 2000;
+  --loader-z-index: 2500;
+  --toast-z-index: 2500;
+  /* Variables settings */
+  --header-height: 78px;
+  --footer-height: 498px;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: var(--primary-font), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  /* font-weight: 400 !important; */
+}
+
+body {
+  color: var(--white);
+  background-color: #0b0214;
+  overflow-x: hidden !important;
+}
+
+*:not(*:hover, *:hover *) {
+  -webkit-transition: 0.1s all ease-in-out;
+  -o-transition: 0.1s all ease-in-out;
+  transition: 0.1s all ease-in-out;
+}
+
+*:focus {
+  transition: 0.1s all ease-in-out;
+  outline: 2px dotted;
+  outline-color: #000;
+  opacity: 1 !important;
+}
+
+ul,
+ol {
+  padding: 0px;
+  margin: 0px;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  caret-color: var(--black) !important;
+}
+
+a:focus {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+@media screen and (min-width: 576px) {
+  .menu_toggle {
+    top: 2.7rem;
+  }
+  .logo {
+    top: 2.6rem;
+  }
+}
+
+ol.ordered-list {
+  margin-left: 15px;
+  li {
+    list-style: decimal;
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.full-width {
+  width: 100% !important;
+  * {
+    width: 100% !important;
+  }
+}
+
+
+.flex-props {
+  @apply flex flex-wrap justify-center items-center
+}
+
+.user-select-none {
+  user-select: none;
+}
+

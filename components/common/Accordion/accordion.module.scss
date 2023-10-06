@@ -1,0 +1,45 @@
+.container {
+  width: 100%;
+  border-bottom: 1px solid var(--red-4);
+  padding-bottom: 20px;
+  &.open {
+    .arrow-icon {
+      transform: rotate(180deg);
+    }
+    .content {
+      opacity: 1;
+      max-height: 50vh;
+    }
+  }
+
+  &.closed {
+    .arrow-icon {
+      transform: rotate(0deg);
+    }
+  }
+
+  .header {
+    cursor: pointer;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .arrow-icon {
+    padding: 8px;
+    transition: transform 0.3s ease-in-out;
+    user-select: none;
+  }
+
+  .content {
+    margin-top: -10px;
+    width: 100%;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+      opacity 0.3s ease-in-out;
+  }
+}
