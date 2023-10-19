@@ -73,21 +73,23 @@ export default function USDTPage() {
 
   const handleMint = async () => {
     try {
+      if (!provider || !address) {
+        toast.error("Web3 provider or address is not available");
+        return;
+      }
       if (!canRunAndToast()) return;
+  
       setisLoading(true);
+  
+      const signer = provider.getSigner();
+      const usdtContract = new ethers.Contract(USDT_ADDRESS, USDTABI, signer);
+  
       const usdtAmount = parseUnits(amount.toString(), 6);
-      const config: any = {
-        address: USDT_ADDRESS,
-        abi: USDTABI,
-        functionName: "mint",
-        args: [address, usdtAmount],
-        chainId: APP_CHAIN_ID,
-      };
-
-      await prepareWriteContract(config);
-
-      await writeContract(config);
-
+  
+      // Mint USDT
+      const tx = await usdtContract.mint(address, usdtAmount);
+      await tx.wait();
+  
       toast.success(`Minted ${amount} USDT successfully`);
       setAmount(amount);
     } catch (error: any) {
@@ -97,6 +99,7 @@ export default function USDTPage() {
       setisLoading(false);
     }
   };
+  
   const isClient = useIsClient();
 
   return (

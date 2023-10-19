@@ -6,16 +6,14 @@ import { useAccount } from "wagmi";
 import { prepareWriteContract, writeContract } from "@wagmi/core";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import {
-  CITYBOYMARKET_ADDRESS,
-  USDT_ADDRESS,
-} from "contracts/addresses";
+import { CITYBOYMARKET_ADDRESS, USDT_ADDRESS } from "contracts/addresses";
 import { CITYBOYMARKETABI, USDTABI } from "contracts/abis";
 import { parseUnits } from "ethers/lib/utils";
 import { usePresaleTimeStatus, useStats } from "hooks";
 import toast from "services/toastService";
 import { getBlockchainErrorMessage, removeLastZeroes } from "utils/helpers";
 import { useGetTotalDollarsRaised } from "hooks";
+import { ethers } from "ethers";
 
 export function CountDownBox() {
   const [payValue, setPayValue] = useState("");
@@ -29,7 +27,7 @@ export function CountDownBox() {
   }, []);
 
   const stats = useStats();
-  
+
   const totalDollarsRaised = useGetTotalDollarsRaised();
 
   const [selectedCoin, setselectedCoin] = useState("USDT");
@@ -108,7 +106,24 @@ export function CountDownBox() {
     setReceiveValue(removeLastZeroes(maxPayValue));
   };
 
+  const getWeb3Stuff = () => {
+    const provider = new ethers.providers.Web3Provider(
+      (window as any)?.ethereum
+    );
+    const signer = provider.getSigner();
+
+    const cityBoyMarketContract = new ethers.Contract(
+      CITYBOYMARKET_ADDRESS,
+      CITYBOYMARKETABI,
+      signer
+    );
+
+    const usdtContract = new ethers.Contract(USDT_ADDRESS, USDTABI, signer);
+    return { provider, signer, cityBoyMarketContract, usdtContract };
+  };
+
   const handleBuy = async () => {
+    const { cityBoyMarketContract, usdtContract } = getWeb3Stuff();
     try {
       setisBuying(true);
       if (isBuyingDisabled()) return;
@@ -123,31 +138,26 @@ export function CountDownBox() {
 
       const isUSDT = selectedCoin === "USDT";
       const decimals = isUSDT ? 6 : 18;
-      const amount = parseUnits(payValue || "0", decimals);
-      
+      const amount = ethers.utils.parseUnits(payValue || "0", decimals);
+
       if (isUSDT) {
-        // Config for USDT approval
-        const configForApproval: any = {
-          address: USDT_ADDRESS,
-          abi: USDTABI,
-          functionName: "approve",
-          args: [CITYBOYMARKET_ADDRESS, amount],
-        };
-        await prepareWriteContract(configForApproval);
-        await writeContract(configForApproval);
+        // Approve USDT
+        const approveTx = await usdtContract.approve(
+          CITYBOYMARKET_ADDRESS,
+          amount
+        );
+        await approveTx.wait();
       }
 
-      // Main config for buying
-      const config: any = {
-        address: CITYBOYMARKET_ADDRESS,
-        abi: CITYBOYMARKETABI,
-        functionName: isUSDT ? "buyWithUSDT" : "buyWithEth",
-        args: isUSDT ? [amount] : [],
-        value: isUSDT ? 0 : amount,
-      };
-
-      await prepareWriteContract(config);
-      await writeContract(config);
+      // Main buying transaction
+      const buyFunction = isUSDT ? "buyWithUSDT" : "buyWithEth";
+      const tx = await cityBoyMarketContract[buyFunction](
+        ...(isUSDT ? [amount] : []),
+        {
+          value: isUSDT ? 0 : amount,
+        }
+      );
+      await tx.wait();
 
       toast.success(`Successfully bought ${receiveValue} CTB`);
     } catch (error: any) {

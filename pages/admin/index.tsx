@@ -15,6 +15,7 @@ import { EthIcon, GoArrowIcon, UsdtIcon } from "assets/images";
 import toast from "services/toastService";
 import { getBlockchainErrorMessage } from "utils/helpers";
 import { useStats, usePresaleTimeStatus } from "hooks";
+import { ethers } from "ethers";
 
 export default function AdminPage() {
   const stats = useStats();
@@ -53,21 +54,32 @@ export default function AdminPage() {
     stats.setselectedRound(round);
   };
 
+  const getWeb3Stuff = () => {
+    const provider = new ethers.providers.Web3Provider(
+      (window as any)?.ethereum
+    );
+    const signer = provider.getSigner();
+
+    const cityBoyMarketContract = new ethers.Contract(
+      CITYBOYMARKET_ADDRESS,
+      CITYBOYMARKETABI,
+      signer
+    );
+    return { provider, signer, cityBoyMarketContract };
+  };
+
   const handlePauseToggle = async () => {
+    const { cityBoyMarketContract, provider, signer } = getWeb3Stuff();
     try {
       setisPausing(true);
-      const config: any = {
-        address: CITYBOYMARKET_ADDRESS,
-        abi: CITYBOYMARKETABI,
-        functionName: stats.paused ? "unpausePresale" : "pausePresale",
-        args: [],
-      };
-      await prepareWriteContract(config);
-      await writeContract(config);
+      const tx = await cityBoyMarketContract[
+        stats.paused ? "unpausePresale" : "pausePresale"
+      ]();
+      await tx.wait();
       toast.success(
         `Presale ${stats.paused ? "unpaused" : "paused"} successfully`
       );
-    } catch (error: any) {
+    } catch (error) {
       const errorMessage = getBlockchainErrorMessage(error);
       toast.error(errorMessage);
     } finally {
@@ -76,63 +88,56 @@ export default function AdminPage() {
   };
 
   const withdrawFunds = async () => {
+    const { cityBoyMarketContract, provider, signer } = getWeb3Stuff();
+
     try {
       setisWithdrawingFunds(true);
-      const config: any = {
-        address: CITYBOYMARKET_ADDRESS,
-        abi: CITYBOYMARKETABI,
-        functionName: "withdrawFunds",
-        args: [],
-      };
-      await prepareWriteContract(config);
-      await writeContract(config);
+      const tx = await cityBoyMarketContract.withdrawFunds();
+      await tx.wait();
       toast.success("Funds withdrawn successfully");
-    } catch (error: any) {
+    } catch (error) {
       const errorMessage = getBlockchainErrorMessage(error);
       toast.error(errorMessage);
     } finally {
       setisWithdrawingFunds(false);
     }
   };
+
   const withdrawCTBTokens = async () => {
+    const { cityBoyMarketContract, provider, signer } = getWeb3Stuff();
+
     try {
       setisWithdrawingTokens(true);
-      const config: any = {
-        address: CITYBOYMARKET_ADDRESS,
-        abi: CITYBOYMARKETABI,
-        functionName: "withdrawCTBTokens",
-        args: [],
-      };
-      await prepareWriteContract(config);
-      await writeContract(config);
+      const tx = await cityBoyMarketContract.withdrawCTBTokens();
+      await tx.wait();
       toast.success("CTB Tokens withdrawn successfully");
-    } catch (error: any) {
+    } catch (error) {
       const errorMessage = getBlockchainErrorMessage(error);
       toast.error(errorMessage);
     } finally {
       setisWithdrawingTokens(false);
     }
   };
-
   const pauseBtnClass = stats.paused ? "bg-green-500" : "bg-yellow-500";
 
   const handleStartPresale = async () => {
+    const { cityBoyMarketContract, provider, signer } = getWeb3Stuff();
     try {
       setisStartingPresale(true);
-      let etherEndTime = new Date(endTime).getTime() / 1000;
-      let etherPriceInEth = parseEther(priceInEth);
-      let etherPriceInUSDT = parseUnits(priceInUSDT, 6);
-      const config: any = {
-        address: CITYBOYMARKET_ADDRESS,
-        abi: CITYBOYMARKETABI,
-        functionName: "startPresale",
-        args: [etherEndTime, etherPriceInEth, etherPriceInUSDT],
-      };
-      await prepareWriteContract(config);
-      await writeContract(config);
+      const etherEndTime = Math.floor(new Date(endTime).getTime() / 1000);
+      const etherPriceInEth = ethers.utils.parseEther(priceInEth);
+      const etherPriceInUSDT = ethers.utils.parseUnits(priceInUSDT, 6);
+
+      const tx = await cityBoyMarketContract.startPresale(
+        etherEndTime,
+        etherPriceInEth,
+        etherPriceInUSDT
+      );
+      await tx.wait();
+
       stats.setselectedRound(stats.currentRound + 1);
       toast.success("Presale started successfully");
-    } catch (error: any) {
+    } catch (error) {
       let errorMessage = getBlockchainErrorMessage(error);
       if (
         errorMessage.includes("Cannot start presale") &&
@@ -152,7 +157,6 @@ export default function AdminPage() {
     } else {
       return `https://etherscan.io/address/${address}`;
     }
-    return "";
   };
 
   const presaleStatus = usePresaleTimeStatus(stats.presaleRound.timeEnded);
