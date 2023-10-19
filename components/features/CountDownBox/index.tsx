@@ -53,10 +53,10 @@ export function CountDownBox() {
 
   const presaleHeadLiner = () => {
     if (presaleTimeStatus === "not-started") return "Presale has not started";
+    else if (stats.paused) return "Presale is paused";
     else if (presaleTimeStatus === "started")
       return "Buy $CTB before presale ends";
     else if (presaleTimeStatus === "ended") return "Presale has ended";
-    else if (stats.paused) return "Presale is paused";
     else return "Presale has not started";
   };
 
@@ -86,7 +86,7 @@ export function CountDownBox() {
       setReceiveValue(value);
       const { priceInEth, priceInUSDT } = stats.presaleRound;
       const price = selectedCoin === "USDT" ? priceInUSDT : priceInEth;
-      const payValue = numValue * price;
+      const payValue = numValue * parseFloat(price);
       console.log({ value, payValue });
       if (isNaN(payValue)) setPayValue("");
       else setPayValue(removeLastZeroes(payValue));
