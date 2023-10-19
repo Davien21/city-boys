@@ -3,19 +3,15 @@ import React from "react";
 import {
   Header,
   Footer,
-  CountDownTimer,
-  ProgressBar,
   CountDownBox,
   Button,
   CloudinaryImage,
-  Accordion,
   Faq,
 } from "components";
 
 import styles from "./home-page.module.scss";
 import { TelegramIcon, TwitterIcon } from "assets/images";
 import { questionsData } from "data/dummy";
-
 function HomePage() {
   return (
     <>
@@ -95,21 +91,23 @@ function HomePage() {
               <div className="md:col-span-5">
                 <p className="text-sm md:text-lg">
                   Are your dreams rusting like forgotten relics in the urban
-                  labyrinth? Come ride with us on this grind, and {`let's`} reclaim
-                  our city, brick by brick, block by block with $CTB. <br />
-                  $CTB {`isn't`} merely a token; {`it's`} a revolution fueled by the
-                  grit to retake {`what's`} ours, solidarity, and the hustle to
-                  construct empires in this web3 chaos. As City Boys, we hoist
-                  the flag of the urban pulse: iron will, streetwise tactics,
-                  and a swagger that lights up the city nights. With our token,
+                  labyrinth? Come ride with us on this grind, and {`let's`}{" "}
+                  reclaim our city, brick by brick, block by block with $CTB.{" "}
+                  <br />
+                  $CTB {`isn't`} merely a token; {`it's`} a revolution fueled by
+                  the grit to retake {`what's`} ours, solidarity, and the hustle
+                  to construct empires in this web3 chaos. As City Boys, we
+                  hoist the flag of the urban pulse: iron will, streetwise
+                  tactics, and a swagger that lights up the city nights. With
+                  our token,
                   {`you're`} not just chasing the next moonshot, {`you're`}
                   strategizing, grinding, and reconquering your city, one
                   district at a time. <br /> <br /> Join our movement, feel the
                   rush of the concrete under your feet, transform those setbacks
-                  into skyscrapers. Dwn your {`city's`} colors, rep your streets.
-                  Because city life {`isn't`} just a game, {`it's`} the ultimate hustle.
-                  And us City Boys? {`We're`} the players making the plays, not the
-                  pawns.
+                  into skyscrapers. Dwn your {`city's`} colors, rep your
+                  streets. Because city life {`isn't`} just a game, {`it's`} the
+                  ultimate hustle. And us City Boys? {`We're`} the players
+                  making the plays, not the pawns.
                 </p>
               </div>
             </div>
@@ -149,7 +147,8 @@ function HomePage() {
                   hustle, carrying the fervor to etch our city onto the crypto
                   landscape. With no guarantees, except our communal grind, it's
                   time to represent your city by securing your $CTB.`}
-                  <br /> <br /> {`Join in on the crucial discussions in our
+                  <br /> <br />{" "}
+                  {`Join in on the crucial discussions in our
                   council, link up with fellow City Boys, and help elevate the
                   city to uncharted heights.`}
                 </p>

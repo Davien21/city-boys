@@ -5,6 +5,7 @@ import { SideNav } from "components";
 import { logo } from "assets/images";
 import styles from "./header.module.scss";
 import Image from "next/image";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 function Header() {
   const router = useRouter();
@@ -20,34 +21,33 @@ function Header() {
     <>
       <header className={`${styles.container} container`}>
         <div
-          className={`${styles.body} py-10 md:py-20 flex justify-between items-center`}
+          className={`${styles.body} py-10 flex justify-between items-center`}
         >
           <div className="">
-            <div className="flex w-8/12 lg:w-full">
-              <Image
-                src={logo}
-                alt="Logo"
-                width={100}
-                height={60}
-                className=""
-              />
-            </div>
+            <Link href="/">
+              <a className="flex">
+                <Image
+                  src={logo}
+                  alt="Logo"
+                  width={100}
+                  height={60}
+                  className=""
+                />
+              </a>
+            </Link>
           </div>
-          {/* <div className="md:hidden">
-            <MenuIcon />
-          </div> */}
           <SideNav />
 
           <ul
             className={`${styles.links} gap-x-8 hidden md:flex justify-between relative  ml-auto `}
           >
             <li className="md:text-base font-bold text-grey-1">
-              <Link href="/">
+              <Link href="/admin">
                 <a>ABOUT OUR CITY</a>
               </Link>
             </li>
             <li className="md:text-base font-bold text-grey-1">
-              <Link href="/">
+              <Link href="/usdt-mint">
                 <a>CITY COUNCIL</a>
               </Link>
             </li>

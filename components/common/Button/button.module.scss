@@ -10,20 +10,44 @@
   font-weight: 600;
   letter-spacing: 0.8px;
 
-  min-width: 248px;
+  &:not(.unstyled) {
+    min-width: 248px;
+    & > :first-child {
+      position: absolute;
+    }
+  }
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  & > :first-child {
-    position: absolute;
+  &.loading:not(.unstyled) {
+    & > :last-child {
+      position: absolute;
+      right: 20px;
+    }
+    & > div {
+      // position: absolute;
+    }
   }
 
-  &::before {
+  &:not(.unstyled)::before {
     position: relative;
     content: "";
     width: calc(100%);
     min-height: 66px;
+  }
+  &.unstyled {
+    * {
+      font-family: var(--primary-font) !important;
+      font-weight: 300;
+      font-size: 16px;
+      letter-spacing: initial;
+    }
+    min-height: 40px;
+    position: relative;
+    &::before {
+      width: calc(100%);
+    }
   }
 
   &:active:not(:disabled) {

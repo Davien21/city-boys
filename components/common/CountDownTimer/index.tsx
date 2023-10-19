@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./countdown.module.css";
+import { useNow } from "hooks";
 
-export function CountDownTimer({ startTime }: { startTime: number }) {
+export function CountDownTimer({ endTime }: { endTime: number }) {
   const dayRef = useRef<HTMLDivElement | null>(null);
   const hourRef = useRef<HTMLDivElement | null>(null);
   const minuteRef = useRef<HTMLDivElement | null>(null);
@@ -9,19 +10,19 @@ export function CountDownTimer({ startTime }: { startTime: number }) {
   const [hasExpired, setHasExpired] = useState(false);
   const venueTimeOffset = 43200;
   const timezoneOffset = new Date().getTimezoneOffset() * 60 + venueTimeOffset;
-  const now = new Date().getTime() + timezoneOffset;
+  const nowTime = useNow();
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
-
-    if (startTime < now) {
+    // console.log({ endTime });
+    if (endTime < nowTime) {
       // If the start time has already passed, mark as expired
       setHasExpired(true);
     } else {
       const setTimeLeft = () => {
         const currentTime = new Date().getTime();
-        if (startTime < currentTime) setHasExpired(true);
-        let difference = Math.abs(startTime - currentTime) / 1000;
+        if (endTime < currentTime) setHasExpired(true);
+        let difference = Math.abs(endTime - currentTime) / 1000;
 
         const days = Math.floor(difference / 86400);
         difference -= days * 86400;
@@ -35,7 +36,7 @@ export function CountDownTimer({ startTime }: { startTime: number }) {
         const seconds = Math.round(difference % 60);
 
         const timeDetails = {
-          days,
+          days: days.toString().padStart(2, "0"),
           hours: hours.toString().padStart(2, "0"),
           minutes: minutes.toString().padStart(2, "0"),
           seconds: seconds.toString().padStart(2, "0"),
@@ -49,40 +50,42 @@ export function CountDownTimer({ startTime }: { startTime: number }) {
         if (secondRef.current)
           secondRef.current.innerText = timeDetails.seconds;
       };
+      setTimeLeft();
       interval = setInterval(() => {
+        // console.log("start time", endTime);
         setTimeLeft();
       }, 1000);
     }
     if (hasExpired && interval) {
       clearInterval(interval);
     }
-  }, [hasExpired, now, startTime, timezoneOffset]);
+  }, [hasExpired, nowTime, endTime, timezoneOffset]);
 
   return (
     <div className={styles["container"]}>
-      <div className="grid grid-cols-4">
-        <div className="flex gap-x-1 ">
+      <div className="flex gap-x-2 ">
+        <div className="flex gap-x-1 w-[36px] justify-end">
           <div className="flex">
             <div ref={dayRef}>00</div>
             <span>D</span>
           </div>
           <span>:</span>
         </div>
-        <div className="flex gap-x-1 ">
+        <div className="flex gap-x-1 w-[36px] justify-end">
           <div className="flex">
             <div ref={hourRef}>00</div>
             <span>H</span>
           </div>
           <span>:</span>
         </div>
-        <div className="flex gap-x-1 ">
+        <div className="flex gap-x-1 w-[36px] justify-end">
           <div className="flex">
             <div ref={minuteRef}>00</div>
             <span>M</span>
           </div>
           <span>:</span>
         </div>
-        <div className="flex gap-x-1 pl-1">
+        <div className="flex gap-x-1 w-[36px] justify-end ml-[-10px]">
           <div className="flex">
             <div ref={secondRef}>00</div>
             <span>S</span>

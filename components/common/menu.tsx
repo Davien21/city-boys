@@ -14,11 +14,11 @@ function Menu() {
   return (
     <nav className="mt-16">
       <ul className="items-center lg:hidden uppercase font-bo">
-        <li className={activeRouteClass("/about")}>
-          <Link href="/about">About Out City</Link>
+        <li className={activeRouteClass("/admin")}>
+          <Link href="/admin">About Out City</Link>
         </li>
         <li className={activeRouteClass("/work")}>
-          <Link href="/work">City Council</Link>
+          <Link href="/usdt-mint">City Council</Link>
         </li>
         <li className={activeRouteClass("/events")}>
           <Link href="/events">Citynomics</Link>

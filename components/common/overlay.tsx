@@ -8,7 +8,7 @@ const style: MotionStyle = {
   position: "fixed",
   top: 0,
   left: 0,
-  zIndex: 10,
+  zIndex: 1000,
 };
 
 const fadeIn = { opacity: 1, transition: { duration: 0.5 }, display: "block" };

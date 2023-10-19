@@ -83,7 +83,7 @@
   --loader-z-index: 2500;
   --toast-z-index: 2500;
   /* Variables settings */
-  --header-height: 78px;
+  --header-height: 140px;
   --footer-height: 498px;
 }
 
@@ -172,3 +172,18 @@ ol.ordered-list {
   user-select: none;
 }
 
+.text-over-flow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+input:invalid + span::after {
+  content: "✖";
+  padding-left: 5px;
+}
+
+input:valid + span::after {
+  content: "✓";
+  padding-left: 5px;
+}

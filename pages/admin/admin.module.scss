@@ -1,0 +1,17 @@
+.container {
+  min-height: calc(100vh - var(--header-height));
+  & > div:first-child {
+    margin-top: -50px;
+    @media screen and (min-width: 1024px) {
+      margin-top: -60px;
+    }
+    @media screen and (min-width: 1441px) {
+      margin-top: 0px;
+    }
+  }
+  input {
+    &:focus {
+      outline: 1px solid white;
+    }
+  }
+}

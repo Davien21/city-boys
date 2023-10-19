@@ -4,7 +4,7 @@ import styles from "./button.module.scss";
 import { SpinnerIcon } from "components";
 import { IComponentState } from "interfaces";
 
-type IFormType = "primary" | "secondary";
+type IFormType = "primary" | "secondary" | "unstyled";
 
 function Button({
   disabled,
@@ -30,8 +30,9 @@ function Button({
   onChangeState?: Dispatch<SetStateAction<IComponentState>>;
 }) {
   let containerClass = `${styles.container} font-secondary`;
-  if (className) containerClass += ` ${className}`;
+  if (className) containerClass += ` ${className} flex gap-x-3 items-center`;
   if (form) containerClass += ` ${styles[form]}`;
+  if (state === "loading") containerClass += ` ${styles["loading"]}`;
   const isLoading = state === "loading";
 
   if (href) {
@@ -51,9 +52,10 @@ function Button({
       className={containerClass}
       {...rest}
       disabled={disabled || isLoading}
+      onClick={onClick}
     >
-      {isLoading === true && <SpinnerIcon />}
       <div>{children}</div>
+      {isLoading === true && <SpinnerIcon />}
     </button>
   );
 }

@@ -5,7 +5,7 @@
     content: "";
     position: absolute;
     z-index: -1;
-    top: 0;
+    top: 17%;
     left: 0;
     background: url("https://res.cloudinary.com/davien21/image/upload/v1693246915/city-boys/top-bg_wtx5ub.png");
   }
@@ -34,6 +34,14 @@
 }
 
 section.one {
+  overflow: hidden;
+  position: relative;
+  z-index: 11;
+  &> div:first-child {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+  }
   .illustration-img-1 {
     position: relative;
     top: -150px;
@@ -144,6 +152,7 @@ section.two {
   }
   .illustration-img-2 {
     position: relative;
+    transform: rotate(-0.15deg);
     z-index: -2;
     div:first-child {
       @media screen and (min-width: 640px) {
@@ -208,6 +217,7 @@ section.three {
   }
   position: relative;
   .illustration-img-3 {
+    // display: none !important;
     // margin-top: -470px;
   }
 }
@@ -285,15 +295,6 @@ section.five {
   padding-bottom: 205px;
   background-color: #160404;
   top: -160px;
-  img {
-    border-radius: 0px 0px 75px 75px;
-  }
-  @media screen and (min-width: 768px) {
-    border-radius: 0px 0px 200px 200px;
-    img {
-      border-radius: 0px 0px 200px 200px;
-    }
-  }
   &::before {
     background: url("https://res.cloudinary.com/davien21/image/upload/v1696354488/city-boys/bg-5_s9hzrk.png");
     background-size: cover;

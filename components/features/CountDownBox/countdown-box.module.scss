@@ -1,4 +1,7 @@
 .container {
+  input:disabled {
+    cursor: not-allowed;
+  }
   position: relative;
   z-index: 1;
   isolation: isolate;
@@ -123,7 +126,7 @@
     input {
       outline: none;
       border: none !important;
-      width: 100px;
+      width: 100%;
       color: var(--white, #fff);
       font-size: 18.625px;
       font-weight: 600;
