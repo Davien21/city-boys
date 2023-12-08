@@ -16,10 +16,10 @@ export function useCanCallWeb3Method() {
   }, [address, chain, chainId, isConnected]);
 
   const canRunAndToast = () => {
-    if (!isConnected) toast.error("Please connect your wallet");
-    else if (chain?.id != chainId) {
-      toast.error("Please switch to the Polygon Mumbai Testnet");
-    }
+    // if (!isConnected) toast.error("Please connect your wallet");
+    // else if (chain?.id != chainId) {
+    //   toast.error("Please switch to the Polygon Mumbai Testnet");
+    // }
 
     return canRun;
   };

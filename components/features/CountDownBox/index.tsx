@@ -2,11 +2,15 @@ import { CountDownTimer, CoinSelect, ProgressBar, Button } from "components";
 import React, { useEffect, useState } from "react";
 
 import styles from "./countdown-box.module.scss";
-import { useAccount } from "wagmi";
+import { useAccount, useNetwork } from "wagmi";
 import { prepareWriteContract, writeContract } from "@wagmi/core";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { CITYBOYMARKET_ADDRESS, USDT_ADDRESS } from "contracts/addresses";
+import {
+  APP_CHAIN_ID,
+  CITYBOYMARKET_ADDRESS,
+  USDT_ADDRESS,
+} from "contracts/addresses";
 import { CITYBOYMARKETABI, USDTABI } from "contracts/abis";
 import { parseUnits } from "ethers/lib/utils";
 import { usePresaleTimeStatus, useStats } from "hooks";
@@ -16,6 +20,9 @@ import { useGetTotalDollarsRaised } from "hooks";
 import { ethers } from "ethers";
 
 export function CountDownBox() {
+  const { chain } = useNetwork();
+  console.log({chain})
+
   const [payValue, setPayValue] = useState("");
   const [receiveValue, setReceiveValue] = useState("");
   const { isConnected } = useAccount();
@@ -123,6 +130,10 @@ export function CountDownBox() {
   };
 
   const handleBuy = async () => {
+    if (!isConnected) return toast.error("Please connect your wallet");
+    if (isConnected && chain?.id != APP_CHAIN_ID) {
+      return toast.error("Please switch to the Polygon Mumbai Testnet");
+    }
     const { cityBoyMarketContract, usdtContract } = getWeb3Stuff();
     try {
       setisBuying(true);
