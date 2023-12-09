@@ -13,6 +13,7 @@ import {
   vesprLogo,
 } from "assets/images";
 import toast from "services/toastService";
+import { useAddressStore } from "store";
 
 type WalletType = "nami" | "eternl" | "vespr" | "lace" | "typhoon";
 
@@ -23,6 +24,7 @@ export function ConnectWalletModal({
   isOpen: boolean;
   setisOpen: Function;
 }) {
+  const { setAddress } = useAddressStore();
   const modalRef = useRef<HTMLDivElement>(null);
   const closeModal = () => {
     setisOpen(false);
@@ -58,20 +60,23 @@ export function ConnectWalletModal({
       let address = "";
       if (id === "nami") {
         // connect to nami wallet
-        address = "anything returned here";
+        address = "0x1234567890saddceredE"; // dummy address for testing
       } else if (id === "eternl") {
         // connect to eternl wallet
-        address = "anything returned here";
+        address = "0x1234567890saddceredE"; // dummy address for testing
       } else if (id === "vespr") {
         // connect to vespr wallet
-        address = "anything returned here";
+        address = "0x1234567890saddceredE"; // dummy address for testing
       } else if (id === "lace") {
         // connect to lace wallet
-        address = "anything returned here";
+        address = "0x1234567890saddceredE"; // dummy address for testing
       } else if (id === "typhoon") {
         // connect to typhoon wallet
-        address = "anything returned here";
+        address = "0x1234567890saddceredE"; // dummy address for testing
       }
+      toast.success("Wallet connected successfully"); // show success toast
+      setAddress(address); // set address in store
+      setisOpen(false); // close modal
       return address;
     } catch (error) {
       toast.error("Error connecting to wallet");
