@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { SideNav } from "components";
+import { ConnectButton, SideNav } from "components";
 import { logo } from "assets/images";
 import styles from "./header.module.scss";
 import Image from "next/image";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 function Header() {
   const router = useRouter();
@@ -39,15 +38,15 @@ function Header() {
           <SideNav />
 
           <ul
-            className={`${styles.links} gap-x-8 hidden md:flex justify-between relative  ml-auto `}
+            className={`${styles.links} gap-x-8 hidden md:flex justify-between relative  ml-auto items-center `}
           >
             <li className="md:text-base font-bold text-grey-1">
-              <Link href="/admin">
+              <Link href="">
                 <a>ABOUT OUR CITY</a>
               </Link>
             </li>
             <li className="md:text-base font-bold text-grey-1">
-              <Link href="/usdt-mint">
+              <Link href="">
                 <a>CITY COUNCIL</a>
               </Link>
             </li>
@@ -65,6 +64,9 @@ function Header() {
               <Link href="/">
                 <a>WORD ON THE STREET</a>
               </Link>
+            </li>
+            <li>
+              <ConnectButton />
             </li>
           </ul>
         </div>

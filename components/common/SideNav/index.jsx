@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Overlay } from "components";
 import MenuToggle from "./menuToggle";
 import SideBar from "./navigation";
-import { useRouteChangeHandler } from "hooks";
+import { useLockScroll, useRouteChangeHandler } from "hooks";
 
 function SideNav(props) {
   const { routeChanging } = useRouteChangeHandler();
@@ -12,6 +12,8 @@ function SideNav(props) {
   useEffect(() => {
     setIsOpen(false);
   }, [routeChanging]);
+
+  useLockScroll(isOpen);
 
   return (
     <>

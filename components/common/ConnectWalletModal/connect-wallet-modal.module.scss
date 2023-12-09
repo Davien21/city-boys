@@ -1,0 +1,84 @@
+.container {
+  height: 100svh;
+  width: 100%;
+  overflow: auto;
+  background: rgba(11, 2, 20, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--modal-z-index);
+  transition: all 0.3s ease-in-out;
+}
+
+.container * {
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-body {
+  --padding: 2px;
+  --item-radius: 12px;
+  padding-top: calc(var(--padding) + 1px);
+  padding-bottom: calc(var(--padding) + 0.5px);
+  padding-left: calc(var(--padding) + 0.5px);
+  padding-right: calc(var(--padding) + 0.5px);
+  border-radius: var(--item-radius);
+  * {
+    // color: var(--white) !important;
+  }
+  // overflow: hidden;
+  & > * {
+    background-color: #160526;
+    border-radius: calc(var(--item-radius) - var(--padding));
+  }
+  background: linear-gradient(
+    105deg,
+    rgba(0, 255, 248, 1),
+    rgba(20, 47, 91, 1),
+    rgba(216, 55, 91, 1)
+  );
+  // margin-left: auto;
+  // margin-top: var(--header-height);
+  // margin-bottom: auto;
+  & > div {
+    background: #0b0214;
+    padding: 60px;
+  }
+  max-width: 585px;
+  .wallets {
+    max-height: 400px;
+    overflow: auto;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    @media screen and (min-width: 1440px) {
+      max-height: 700px;
+    }
+    button:disabled {
+      p {
+        color: var(--grey-3) !important;
+      }
+      cursor: not-allowed;
+    }
+
+    &::-webkit-scrollbar {
+      width: 3px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: var(--border-radius-md);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--purple);
+      border-radius: var(--border-radius-md);
+    }
+
+    &::-webkit-scrollbar-button {
+      // height: 30px;
+    }
+  }
+}

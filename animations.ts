@@ -45,7 +45,7 @@ export const ModalParentVariants = {
     transition: {
       duration: 0.15,
     },
-    display: "block",
+    display: "flex",
   },
   exit: { opacity: 0, transitionEnd: { display: "none" } },
 };

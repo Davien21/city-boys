@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./countdown.module.css";
-import { useNow } from "hooks";
 
 export function CountDownTimer({ endTime }: { endTime: number }) {
   const dayRef = useRef<HTMLDivElement | null>(null);
@@ -8,58 +7,54 @@ export function CountDownTimer({ endTime }: { endTime: number }) {
   const minuteRef = useRef<HTMLDivElement | null>(null);
   const secondRef = useRef<HTMLDivElement | null>(null);
   const [hasExpired, setHasExpired] = useState(false);
-  const venueTimeOffset = 43200;
-  const timezoneOffset = new Date().getTimezoneOffset() * 60 + venueTimeOffset;
-  const nowTime = useNow();
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
-    // console.log({ endTime });
-    if (endTime < nowTime) {
-      // If the start time has already passed, mark as expired
-      setHasExpired(true);
-    } else {
-      const setTimeLeft = () => {
-        const currentTime = new Date().getTime();
-        if (endTime < currentTime) setHasExpired(true);
-        let difference = Math.abs(endTime - currentTime) / 1000;
 
-        const days = Math.floor(difference / 86400);
-        difference -= days * 86400;
+    const setTimeLeft = () => {
+      const currentTime = new Date().getTime();
+      if (endTime < currentTime) {
+        setHasExpired(true);
+        return;
+      } else {
+        setHasExpired(false);
+      }
 
-        const hours = Math.floor(difference / 3600) % 24;
-        difference -= hours * 3600;
+      let difference = Math.abs(endTime - currentTime) / 1000;
 
-        const minutes = Math.floor(difference / 60) % 60;
-        difference -= minutes * 60;
+      const days = Math.floor(difference / 86400);
+      difference -= days * 86400;
 
-        const seconds = Math.round(difference % 60);
+      const hours = Math.floor(difference / 3600) % 24;
+      difference -= hours * 3600;
 
-        const timeDetails = {
-          days: days.toString().padStart(2, "0"),
-          hours: hours.toString().padStart(2, "0"),
-          minutes: minutes.toString().padStart(2, "0"),
-          seconds: seconds.toString().padStart(2, "0"),
-        };
+      const minutes = Math.floor(difference / 60) % 60;
+      difference -= minutes * 60;
 
-        if (dayRef.current)
-          dayRef.current.innerText = timeDetails.days.toString();
-        if (hourRef.current) hourRef.current.innerText = timeDetails.hours;
-        if (minuteRef.current)
-          minuteRef.current.innerText = timeDetails.minutes;
-        if (secondRef.current)
-          secondRef.current.innerText = timeDetails.seconds;
+      const seconds = Math.round(difference % 60);
+
+      const timeDetails = {
+        days: days.toString().padStart(2, "0"),
+        hours: hours.toString().padStart(2, "0"),
+        minutes: minutes.toString().padStart(2, "0"),
+        seconds: seconds.toString().padStart(2, "0"),
       };
-      setTimeLeft();
-      interval = setInterval(() => {
-        // console.log("start time", endTime);
-        setTimeLeft();
-      }, 1000);
-    }
+
+      if (dayRef.current) dayRef.current.innerText = timeDetails.days;
+      if (hourRef.current) hourRef.current.innerText = timeDetails.hours;
+      if (minuteRef.current) minuteRef.current.innerText = timeDetails.minutes;
+      if (secondRef.current) secondRef.current.innerText = timeDetails.seconds;
+    };
+
+    setTimeLeft();
+    interval = setInterval(setTimeLeft, 1000);
     if (hasExpired && interval) {
       clearInterval(interval);
     }
-  }, [hasExpired, nowTime, endTime, timezoneOffset]);
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [endTime, hasExpired]);
 
   return (
     <div className={styles["container"]}>

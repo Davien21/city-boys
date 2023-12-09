@@ -61,8 +61,8 @@
   --orange: #ffbf59;
   --red: #940409;
   --red-2: #a44145;
-  --red-3: #DB3316;
-  --red-4: #D8375B;
+  --red-3: #db3316;
+  --red-4: #d8375b;
   /* Font settings */
   --primary-font: "Gilroy", helvetica;
   --secondary-font: "Agency FB", helvetica;
@@ -163,9 +163,8 @@ ol.ordered-list {
   }
 }
 
-
 .flex-props {
-  @apply flex flex-wrap justify-center items-center
+  @apply flex flex-wrap justify-center items-center;
 }
 
 .user-select-none {
@@ -186,4 +185,37 @@ input:invalid + span::after {
 input:valid + span::after {
   content: "✓";
   padding-left: 5px;
+}
+
+.gradient-border {
+  --padding: 2px;
+  --item-radius: 12px;
+  padding-top: calc(var(--padding) + 0px);
+  padding-bottom: calc(var(--padding) + 0px);
+  padding-left: calc(var(--padding) + 0px);
+  padding-right: calc(var(--padding) + 0px);
+  padding-top: calc(var(--padding) + 1px);
+  padding-bottom: calc(var(--padding) + 0.5px);
+  padding-left: calc(var(--padding) + 0.5px);
+  padding-right: calc(var(--padding) + 0.5px);
+  border-radius: var(--item-radius);
+  // overflow: hidden;
+  & > * {
+    background-color: #160526;
+    border-radius: calc(var(--item-radius) - var(--padding));
+  }
+  background: linear-gradient(
+    167deg,
+    rgba(0, 255, 248, 1),
+    rgba(20, 47, 91, 1),
+    rgba(216, 55, 91, 1)
+  );
+}
+
+.hide-overflow {
+  overflow: hidden !important;
+}
+
+.dark-grey {
+  color: var(--grey-3);
 }

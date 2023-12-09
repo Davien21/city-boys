@@ -3,8 +3,7 @@ import styles from "./coin-select.module.scss";
 import { getRandomKey } from "utils/randomKey";
 import { useEscapeKey, useClickOutside, useKeyDown } from "hooks";
 import TippyHeadless from "@tippyjs/react/headless";
-import { DownArrowIcon, EthIcon, UsdtIcon, VerifiedIcon } from "assets/images";
-import { useElementSize } from "usehooks-ts";
+import { DownArrowIcon, AdaIcon, VerifiedIcon } from "assets/images";
 import { motion } from "framer-motion";
 import { ISearchableListItem } from "interfaces";
 interface Props {
@@ -19,12 +18,8 @@ const CoinSelect = ({ onSelect }: Props) => {
 
   let filters = [
     {
-      name: "USDT",
-      img: "https://s2.coinmarketcap.com/static/img/coins/32x32/825.png",
-    },
-    {
-      name: "ETH",
-      img: "https://s2.coinmarketcap.com/static/img/exchanges/32x32/1027.png",
+      name: "ADA",
+      // img: "USE_THIS_IF_YOU_PREFER",
     },
   ];
 
@@ -96,9 +91,8 @@ const CoinSelect = ({ onSelect }: Props) => {
   let filterListClass = styles["filter-list"];
   if (willScroll) filterListClass += ` ${styles["scroll"]}`;
   const ImgIcon = ({ name }: { name: string }) => {
-    if (name === "USDT") return <UsdtIcon />;
-    if (name === "ETH") return <EthIcon />;
-    return <UsdtIcon />;
+    if (name === "ADA") return <AdaIcon />;
+    return <AdaIcon />; // default
   };
   return (
     <div className="w-full">

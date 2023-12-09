@@ -7,9 +7,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@rainbow-me/rainbowkit": "^1.1.1",
     "@tippyjs/react": "^4.2.6",
-    "@wagmi/chains": "^1.8.0",
     "axios": "0.24.0",
     "ethers": "^5.7.1",
     "formik": "^2.4.2",

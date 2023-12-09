@@ -25,20 +25,21 @@
   width: 80%;
 }
 
-.side-nav ul li {
+.side-nav ul li:not(:last-child) {
   list-style: none;
   cursor: pointer;
   margin-left: -25px;
   margin-right: -25px;
   color: #fff;
+  text-transform: uppercase;
 }
 
-.side-nav ul li a {
+.side-nav ul li:not(:last-child) a {
   display: block;
   padding: 24px;
 }
 
-.side-nav ul li a:hover {
+.side-nav ul li:not(:last-child) a:hover {
   background: -webkit-linear-gradient(45deg, #00acd6, #00a651 100%);
   -webkit-background-clip: text;
   background-clip: text;

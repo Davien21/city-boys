@@ -1,0 +1,23 @@
+.container {
+  height: 100svh;
+  width: 100%;
+  overflow: auto;
+  &.default {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  &.dark {
+    background: rgba(24, 2, 41, 0.4);
+  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--modal-z-index);
+  transition: all 0.3s ease-in-out;
+}
+
+.container * {
+  transition: all 0.3s ease-in-out;
+}
