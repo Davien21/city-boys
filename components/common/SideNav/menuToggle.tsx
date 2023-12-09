@@ -10,7 +10,7 @@ function MenuToggle({ onToggleMenu }: {
     <motion.div
       whileTap={{ scale: 0.85 }}
       onClick={onToggleMenu}
-      className={`cursor-pointer md:hidden menu_toggle`}
+      className={`cursor-pointer lg:hidden menu_toggle`}
     >
       <MenuIcon />
     </motion.div>

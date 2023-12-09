@@ -4,7 +4,7 @@ import styles from "./button.module.scss";
 import { SpinnerIcon } from "components";
 import { IComponentState } from "interfaces";
 
-type IFormType = "primary" | "secondary" | "unstyled";
+type IFormType = "primary" | "secondary" | "tertiary" | "unstyled";
 
 function Button({
   disabled,
@@ -16,6 +16,7 @@ function Button({
   state = "idle",
   onChangeState,
   href,
+  target = '_self',
   ...rest
 }: {
   disabled?: boolean;
@@ -27,6 +28,7 @@ function Button({
   rest?: any;
   state?: IComponentState;
   href?: string;
+  target?: React.HTMLAttributeAnchorTarget;
   onChangeState?: Dispatch<SetStateAction<IComponentState>>;
 }) {
   let containerClass = `${styles.container} font-secondary`;
@@ -38,7 +40,7 @@ function Button({
   if (href) {
     return (
       <Link href={href}>
-        <a className={containerClass} onClick={onClick} {...rest}>
+        <a className={containerClass} onClick={onClick} {...rest} target={target}>
           {isLoading === true && <SpinnerIcon />}
           {children}
         </a>

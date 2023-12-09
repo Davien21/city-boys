@@ -5,6 +5,7 @@ import { useLockScroll, useModal } from "hooks";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
+  XIcon,
   eternlLogo,
   laceLogo,
   namiLogo,
@@ -94,7 +95,16 @@ export function ConnectWalletModal({
             className={`${styles["modal-body"]} `}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className={` py-10`}>
+            <div className={``}>
+              <div className={`flex justify-end ${styles["close-icon"]}`}>
+                <button
+                  onClick={() => {
+                    setisOpen(false);
+                  }}
+                >
+                  <XIcon />
+                </button>
+              </div>
               <h5 className="text-3xl font-bold mb-10">Connect Wallet</h5>
               <p className="pb-4 ">
                 By connecting your wallet, you agree to the Terms & Conditions

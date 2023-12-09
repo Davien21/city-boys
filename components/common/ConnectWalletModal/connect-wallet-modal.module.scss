@@ -44,7 +44,24 @@
   // margin-bottom: auto;
   & > div {
     background: #0b0214;
-    padding: 60px;
+    padding-top: 40px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+    .close-icon {
+      svg {
+        // position: absolute;
+        // top: 20px;
+        // right: 20px;
+        cursor: pointer;
+        &:hover {
+          path {
+            fill: var(--red);
+          }
+          transform: scale(1.1);
+        }
+      }
+    }
   }
   max-width: 585px;
   .wallets {

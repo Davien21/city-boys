@@ -10,8 +10,8 @@ import {
 } from "components";
 
 import styles from "./home-page.module.scss";
-import { TelegramIcon, TwitterIcon } from "assets/images";
-import { questionsData } from "data/dummy";
+import { DiscordIcon, TelegramIcon, TwitterIcon } from "assets/images";
+import { currentQuestionsData, questionsData } from "data/dummy";
 function HomePage() {
   return (
     <>
@@ -28,7 +28,10 @@ function HomePage() {
                   City Boys Coin, where every neon light could be your next
                   crypto green. Turn your hustle into your empire.
                 </p>
-                <div className="flex justify-center md:justify-start">
+                <div className="gap-6 flex justify-center md:justify-start">
+                  <Button form="tertiary" href="" target="_blank">
+                    JOIN DISCORD
+                  </Button>
                   <Button form="primary">READ CITYPAPER</Button>
                 </div>
               </div>
@@ -159,6 +162,9 @@ function HomePage() {
                   <div className={`${styles["sm-icons"]}`}>
                     <TelegramIcon />
                   </div>
+                  <div className={`${styles["sm-icons"]}`}>
+                    <DiscordIcon />
+                  </div>
                 </div>
               </div>
             </div>
@@ -191,78 +197,58 @@ function HomePage() {
               <div
                 className={`${styles["coin-stats"]} max-w-[679px] m-auto te xt-center md:col-span-4`}
               >
+                <div className="rounded-[20px] py-4 px-16 border items-center border-[#FFEC4A] flex justify-between gap-x-10 mb-10">
+                  <span className="font- bold font-secondary">
+                    PRESALE PRICE
+                  </span>
+                  <span className="text-3xl font-bold">1 CTB = 1 ADA</span>
+                </div>
                 <div className="flex text-center sm:text-left m-auto justify-center flex-wrap sm:grid sm:grid-cols-4 md:grid-cols-3 gap-x-4 gap-y-6">
                   <div className="col-span-1 gap-y-1">
                     <p className="text-sm text-grey-2 font-secondary">
                       Network
                     </p>
-                    <p className="text-lg text-grey-1">Ethereum</p>
+                    <p className="text-3xl font-semibold text-grey-1">
+                      Cardano
+                    </p>
                   </div>
                   <div className="col-span-1 gap-y-1">
                     <p className="text-sm text-grey-2 font-secondary">Ticker</p>
-                    <p className="text-lg text-grey-1">CTB</p>
+                    <p className="text-3xl font-semibold">CTB</p>
                   </div>
                   <div className="col-span-1 gap-y-1">
                     <p className="text-sm text-grey-2 font-secondary">
                       Token Name
                     </p>
-                    <p className="text-lg text-grey-1">CityBoys Token</p>
+                    <p className="text-3xl font-semibold">CityBoys Token</p>
                   </div>
                   <div className="col-span-1 gap-y-1">
                     <p className="text-sm text-grey-2 font-secondary">
                       Token Supply
                     </p>
-                    <p className="text-lg text-grey-1">4 Million</p>
+                    <p className="text-3xl font-semibold">4 Million</p>
                   </div>
                   <div className="col-span-1 gap-y-1">
                     <p className="text-sm text-grey-2 font-secondary">
                       % Sold In Presale
                     </p>
-                    <p className="text-lg text-grey-1">100%</p>
+                    <p className="text-3xl font-semibold">100%</p>
                   </div>
                   <div className="col-span-1 gap-y-1">
                     <p className="text-sm text-grey-2 font-secondary">
                       Tokens Available
                     </p>
-                    <p className="text-lg text-grey-1">4,000,000</p>
-                  </div>
-                  <div className="col-span-1 gap-y-1">
-                    <p className="text-sm text-grey-2 font-secondary">
-                      Sale Stages
-                    </p>
-                    <p className="text-lg text-grey-1">4 Stages</p>
-                  </div>
-                  <div className="col-span-1 gap-y-1">
-                    <p className="text-sm text-grey-2 font-secondary">
-                      First Stage Token Price
-                    </p>
-                    <p className="text-lg text-grey-1">$0.1</p>
-                  </div>
-                  <div className="col-span-1 gap-y-1">
-                    <p className="text-sm text-grey-2 font-secondary">
-                      Initial Market Cap
-                    </p>
-                    <p className="text-lg text-grey-1">$100,000</p>
-                  </div>
-                  <div className="col-span-1 gap-y-1">
-                    <p className="text-sm text-grey-2 font-secondary">
-                      Total Raise
-                    </p>
-                    <p className="text-lg text-grey-1">$1,000,000</p>
-                  </div>
-                  <div className="col-span-1 gap-y-1">
-                    <p className="text-sm text-grey-2 font-secondary">
-                      Liquidity Lock
-                    </p>
-                    <p className="text-lg text-grey-1">12 Months</p>
-                  </div>
-                  <div className="col-span-1 gap-y-1">
-                    <p className="text-sm text-grey-2 font-secondary">
-                      Purchase Info
-                    </p>
-                    <p className="text-lg text-grey-1">No Min/Max Buy</p>
+                    <p className="text-3xl font-semibold">4,000,000</p>
                   </div>
                 </div>
+                <Button
+                  href=""
+                  target="_blank"
+                  form="primary"
+                  className="mt-16"
+                >
+                  READ FULL CITYNOMICS
+                </Button>
               </div>
             </div>
           </div>
@@ -334,7 +320,7 @@ function HomePage() {
                 <h2 className="text-center font-header font-bold mb-6 sm:mb-8">
                   Word on the street
                 </h2>
-                <Faq data={questionsData} />
+                <Faq data={currentQuestionsData} />
               </div>
             </div>
           </div>

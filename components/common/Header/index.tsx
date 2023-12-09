@@ -38,29 +38,29 @@ function Header() {
           <SideNav />
 
           <ul
-            className={`${styles.links} gap-x-8 hidden md:flex justify-between relative  ml-auto items-center `}
+            className={`${styles.links} gap-x-8 hidden lg:flex justify-between relative  ml-auto items-center `}
           >
-            <li className="md:text-base font-bold text-grey-1">
+            <li className="lg:text-base font-bold text-grey-1">
               <Link href="">
                 <a>ABOUT OUR CITY</a>
               </Link>
             </li>
-            <li className="md:text-base font-bold text-grey-1">
+            <li className="lg:text-base font-bold text-grey-1">
               <Link href="">
                 <a>CITY COUNCIL</a>
               </Link>
             </li>
-            <li className="md:text-base font-bold text-grey-1">
+            <li className="lg:text-base font-bold text-grey-1">
               <Link href="/">
                 <a>CITYNOMICS</a>
               </Link>
             </li>
-            <li className="md:text-base font-bold text-grey-1">
+            <li className="lg:text-base font-bold text-grey-1">
               <Link href="/">
                 <a>CITYMAP</a>
               </Link>
             </li>
-            <li className="md:text-base font-bold text-grey-1">
+            <li className="lg:text-base font-bold text-grey-1">
               <Link href="/">
                 <a>WORD ON THE STREET</a>
               </Link>

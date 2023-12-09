@@ -9,13 +9,17 @@ export function ConnectButton() {
 
   let buttonClass = `${styles["connect-button"]} `;
   if (address) buttonClass += `${styles["connected"]}`;
-
+  const shortenedAddress = address?.slice(0, 6) + "..." + address?.slice(-4);
   return (
     <div className={`${styles["container"]}`}>
       <ConnectWalletModal isOpen={isOpen} setisOpen={setisOpen} />
 
-      <button className={buttonClass} onClick={() => setisOpen(true)}>
-        {address ? address : "CONNECT WALLET"}
+      <button
+        className={buttonClass}
+        onClick={() => setisOpen(true)}
+        title={address ? address : "CONNECT WALLET"}
+      >
+        <span>{address ? shortenedAddress : "CONNECT WALLET"}</span>
       </button>
     </div>
   );
