@@ -28,7 +28,7 @@ function HomePage() {
                   City Boys Coin, where every neon light could be your next
                   crypto green. Turn your hustle into your empire.
                 </p>
-                <div className="gap-6 flex justify-center md:justify-start">
+                <div className="gap-6 flex flex-wrap justify-center md:justify-start">
                   <Button form="tertiary" href="" target="_blank">
                     JOIN DISCORD
                   </Button>
