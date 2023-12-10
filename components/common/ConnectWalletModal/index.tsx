@@ -13,26 +13,21 @@ import {
   vesprLogo,
 } from "assets/images";
 import toast from "services/toastService";
-import { useAddressStore } from "store";
+import { useWalletStore } from "store";
 
 type WalletType = "nami" | "eternl" | "vespr" | "lace" | "typhoon";
 
-export function ConnectWalletModal({
-  isOpen,
-  setisOpen,
-}: {
-  isOpen: boolean;
-  setisOpen: Function;
-}) {
-  const { setAddress } = useAddressStore();
+export function ConnectWalletModal() {
+  const { setAddress, isWalletModalOpen, setIsWalletModalOpen } =
+    useWalletStore();
   const modalRef = useRef<HTMLDivElement>(null);
   const closeModal = () => {
-    setisOpen(false);
+    setIsWalletModalOpen(false);
   };
 
-  useModal(isOpen, modalRef, closeModal);
+  useModal(isWalletModalOpen, modalRef, closeModal);
 
-  useLockScroll(isOpen);
+  useLockScroll(isWalletModalOpen);
 
   let overlayClass = `${styles["container"]} `;
 
@@ -76,7 +71,7 @@ export function ConnectWalletModal({
       }
       toast.success("Wallet connected successfully"); // show success toast
       setAddress(address); // set address in store
-      setisOpen(false); // close modal
+      setIsWalletModalOpen(false); // close modal
       return address;
     } catch (error) {
       toast.error("Error connecting to wallet");
@@ -88,7 +83,7 @@ export function ConnectWalletModal({
     <div className={`${styles["con tainer"]}`}>
       <motion.div
         initial={{ opacity: 0, display: "none" }}
-        animate={isOpen ? "enter" : "exit"}
+        animate={isWalletModalOpen ? "enter" : "exit"}
         variants={ModalParentVariants}
         exit={{ opacity: 0, transition: { when: "afterChildren" } }}
         className={overlayClass}
@@ -104,7 +99,7 @@ export function ConnectWalletModal({
               <div className={`flex justify-end ${styles["close-icon"]}`}>
                 <button
                   onClick={() => {
-                    setisOpen(false);
+                    setIsWalletModalOpen(false);
                   }}
                 >
                   <XIcon />

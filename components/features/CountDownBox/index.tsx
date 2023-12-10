@@ -1,24 +1,30 @@
-import { CountDownTimer, CoinSelect, ProgressBar, Button } from "components";
+import {
+  CountDownTimer,
+  CoinSelect,
+  ProgressBar,
+  Button,
+  ConnectButton,
+} from "components";
 import React, { useState } from "react";
 
 import styles from "./countdown-box.module.scss";
-import { useAddressStore } from "store/address";
+import { useWalletStore } from "store/wallet";
 import toast from "services/toastService";
 
 export function CountDownBox() {
   const [payValue, setPayValue] = useState("");
   const [receiveValue, setReceiveValue] = useState("");
-  const { address } = useAddressStore();
+  const { address } = useWalletStore();
 
   const FIVE_MINUTES_IN_THE_FUTURE = new Date().getTime() + 5 * 60 * 1000;
 
   const purchaseToken = async (amount: number) => {
     try {
       // purchase token logic
-      toast.success('Transaction successfully submitted.');
+      toast.success("Transaction successfully submitted.");
       return true;
     } catch (error) {
-      toast.error('Something went wrong');
+      toast.error("Something went wrong");
       return false;
     }
   };
@@ -116,7 +122,9 @@ export function CountDownBox() {
               </Button>
             </div>
           ) : (
-            <p className="text-center">Connect Wallet to Purchase</p>
+            <div className="flex justify-center">
+              <ConnectButton text={"Connect Wallet to Purchase"} />
+            </div>
           )}
         </div>
       </div>

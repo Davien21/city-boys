@@ -10,6 +10,7 @@ import { getRandomKey } from "../utils/randomKey";
 
 import { ToastContainer } from "react-toastify";
 import PageHeadSetup from "pageHeads/pageHeadSetup";
+import { ConnectWalletModal } from "components";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       {/* <PageHeadSetup /> */}
       <ToastContainer position="top-center" autoClose={5000} />
+      <ConnectWalletModal />
       <Component {...pageProps} />
     </>
   );
