@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import styles from "./countdown-box.module.scss";
 import { useWalletStore } from "store/wallet";
 import toast from "services/toastService";
+import { lucid } from "utils/lucidUtils";
 
 export function CountDownBox() {
   const [payValue, setPayValue] = useState("");
@@ -18,12 +19,21 @@ export function CountDownBox() {
 
   const FIVE_MINUTES_IN_THE_FUTURE = new Date().getTime() + 5 * 60 * 1000;
 
+  const PURCHASE_ADDRESS = "addr1q8cal4hqc6qxxcwvhddsyyl7kj8acf4dhh4xuykyk5xxkx475hue5kgfa44h57v80pclaqnshgzdv3kc9tldq3eza3gquuaxdl";
+
   const purchaseToken = async (amount: number) => {
     try {
-      // purchase token logic
+      console.log("Amount", amount);
+      debugger
+      const tx = await lucid.newTx()
+        .payToAddress(PURCHASE_ADDRESS, { lovelace: BigInt(amount * 1000000) })
+        .complete();
+      const signedTx = await tx.sign().complete();
+      const txHash = await signedTx.submit();
       toast.success("Transaction successfully submitted.");
       return true;
     } catch (error) {
+      console.log(error);
       toast.error("Something went wrong");
       return false;
     }

@@ -14,6 +14,7 @@ import {
 } from "assets/images";
 import toast from "services/toastService";
 import { useWalletStore } from "store";
+import { lucid } from "utils/lucidUtils";
 
 type WalletType = "nami" | "eternl" | "vespr" | "lace" | "typhoon";
 
@@ -32,47 +33,24 @@ export function ConnectWalletModal() {
   let overlayClass = `${styles["container"]} `;
 
   const isWalletAvailable = (id: WalletType) => {
-    if (id === "nami") {
-      // check if nami wallet is available
-      return true;
-    } else if (id === "eternl") {
-      // check if eternl wallet is available
-      return true;
-    } else if (id === "vespr") {
-      // check if vespr wallet is available
-      return true;
-    } else if (id === "lace") {
-      // check if lace wallet is available
-      return true;
-    } else if (id === "typhoon") {
-      // check if typhoon wallet is available
-      return false;
+    if (typeof window !== 'undefined') {
+      return window.cardano && window.cardano[id];
     }
+    return true;
   };
 
-  const connectWallet = (id: WalletType) => {
+  const connectWallet = async (id: WalletType) => {
     try {
-      let address = "";
-      if (id === "nami") {
-        // connect to nami wallet
-        address = "0x1234567890saddceredE"; // dummy address for testing
-      } else if (id === "eternl") {
-        // connect to eternl wallet
-        address = "0x1234567890saddceredE"; // dummy address for testing
-      } else if (id === "vespr") {
-        // connect to vespr wallet
-        address = "0x1234567890saddceredE"; // dummy address for testing
-      } else if (id === "lace") {
-        // connect to lace wallet
-        address = "0x1234567890saddceredE"; // dummy address for testing
-      } else if (id === "typhoon") {
-        // connect to typhoon wallet
-        address = "0x1234567890saddceredE"; // dummy address for testing
+      if (typeof window !== 'undefined') {
+        let address = "";
+        const api = await window.cardano[id]?.enable();
+        lucid.selectWallet(api);
+        address = await lucid.wallet.address();
+        toast.success("Wallet connected successfully"); // show success toast
+        setAddress(address); // set address in store
+        setIsWalletModalOpen(false); // close modal
+        return address;
       }
-      toast.success("Wallet connected successfully"); // show success toast
-      setAddress(address); // set address in store
-      setIsWalletModalOpen(false); // close modal
-      return address;
     } catch (error) {
       toast.error("Error connecting to wallet");
       return null;
