@@ -79,10 +79,17 @@ export function ConnectWalletModal() {
               </button>
             </div>
             <h5 className="text-3xl font-bold mb-10">Connect Wallet</h5>
-            <p className="pb-4 ">
-              By connecting your wallet, you agree to the Terms & Conditions and
-              Privacy Policy
-            </p>
+            <div className="pb-4 ">
+              <span>By connecting your wallet, you agree to the </span>
+              <a
+                href="https://docs.city-boys.com/terms-and-conditions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-4"
+              >
+                Terms & Conditions
+              </a>
+            </div>
             <div className={`flex flex-col gap-3 mt-4 ${styles["wallets"]}`}>
               <button
                 className="gradient-border text-left"

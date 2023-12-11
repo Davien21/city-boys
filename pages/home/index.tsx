@@ -22,17 +22,27 @@ function HomePage() {
             <div className="flex justify-around flex-wrap md:flex-nowrap gap-y-20">
               <div className="my-auto mx-auto md:mx-0 max-w-[495px] text-center md:text-left">
                 <h1 className={`${styles["header"]} font-header pl-3.5 mb-6`}>
-                  Cash the chaos flip the skyline
+                Cash the chaos flip the skyline
                 </h1>
                 <p className="text-lg mb-14 sm:text-xl text-center md:text-left">
                   City Boys Coin, where every neon light could be your next
                   crypto green. Turn your hustle into your empire.
                 </p>
                 <div className="gap-6 flex flex-wrap sm:flex-nowrap justify-center md:justify-start">
-                  <Button form="tertiary" href="" target="_blank">
+                  <Button
+                    form="tertiary"
+                    href="https://discord.com/invite/ZmpCJkDSQj"
+                    target="_blank"
+                  >
                     JOIN DISCORD
                   </Button>
-                  <Button form="primary">READ CITYPAPER</Button>
+                  <Button
+                    form="primary"
+                    href="https://medium.com/cityboys/introducing-city-boys-a-web3-open-world-where-users-can-own-personalize-their-unique-3d-7cf3240e26f8"
+                    target="_blank"
+                  >
+                    READ CITYPAPER
+                  </Button>
                 </div>
               </div>
 
@@ -83,7 +93,7 @@ function HomePage() {
             </div>
           </div>
         </section>
-        <section className={`${styles["three"]}`}>
+        <section className={`${styles["three"]}`} id="about">
           <div className="container sm:px-20 xl:px-40">
             <div className="grid md:grid-cols-8 gap-y-4 py-16 md:pt-50">
               <div className="md:col-span-3">
@@ -134,7 +144,7 @@ function HomePage() {
             </div>
           </div>
         </section>
-        <section className={`${styles["four"]}`}>
+        <section className={`${styles["four"]}`} id="city-council">
           <div className="container">
             <div className="m-auto md:m-0 max-w-[650px] gap-y-4 py-16 md:pt-20">
               <div className="md:col-span-3">
@@ -157,13 +167,31 @@ function HomePage() {
                 </p>
                 <div className="flex gap-x-6">
                   <div className={`${styles["sm-icons"]}`}>
-                    <TwitterIcon />
+                    <a
+                      href="https://twitter.com/cityboystoken"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <TwitterIcon />
+                    </a>
                   </div>
                   <div className={`${styles["sm-icons"]}`}>
-                    <TelegramIcon />
+                    <a
+                      href="https://t.me/cityboystoken"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <TelegramIcon />
+                    </a>
                   </div>
                   <div className={`${styles["sm-icons"]}`}>
-                    <DiscordIcon />
+                    <a
+                      href="https://discord.com/invite/ZmpCJkDSQj"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <DiscordIcon />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -180,7 +208,7 @@ function HomePage() {
             </div>
           </div>
         </section>
-        <section className={`${styles["five"]}`}>
+        <section className={`${styles["five"]}`} id="citynomics">
           <div className="container">
             <div className="grid md:grid-cols-8 items-center justify-center">
               <div className="md:col-span-4 ">
@@ -201,7 +229,7 @@ function HomePage() {
                   <span className="font- bold font-secondary">
                     PRESALE PRICE
                   </span>
-                  <span className="text-3xl font-bold">1 CTB = 1 ADA</span>
+                  <span className="text-3xl font-bold">1 CTB = 2 ADA</span>
                 </div>
                 <div className="flex text-center sm:text-left m-auto justify-center flex-wrap sm:grid sm:grid-cols-4 md:grid-cols-3 gap-x-4 gap-y-6">
                   <div className="col-span-1 gap-y-1">
@@ -311,7 +339,7 @@ function HomePage() {
             </div>
           </div>
         </section>
-        <section className={`${styles["seven"]}`}>
+        <section className={`${styles["seven"]}`} id="faq">
           <div className="container">
             <div className="">
               <div

@@ -41,27 +41,29 @@ function Header() {
             className={`${styles.links} gap-x-8 hidden lg:flex justify-between relative  ml-auto items-center `}
           >
             <li className="lg:text-base font-bold text-grey-1">
-              <Link href="">
+              <Link href="#about">
                 <a>ABOUT OUR CITY</a>
               </Link>
             </li>
             <li className="lg:text-base font-bold text-grey-1">
-              <Link href="">
+              <Link href="#city-council">
                 <a>CITY COUNCIL</a>
               </Link>
             </li>
             <li className="lg:text-base font-bold text-grey-1">
-              <Link href="/">
+              <Link href="#citynomics">
                 <a>CITYNOMICS</a>
               </Link>
             </li>
             <li className="lg:text-base font-bold text-grey-1">
-              <Link href="/">
-                <a>CITYMAP</a>
+              <Link href="https://docs.city-boys.com/team">
+                <a target="_blank" rel="noopener noreferrer">
+                  TEAM
+                </a>
               </Link>
             </li>
             <li className="lg:text-base font-bold text-grey-1">
-              <Link href="/">
+              <Link href="#faq">
                 <a>WORD ON THE STREET</a>
               </Link>
             </li>

@@ -93,12 +93,14 @@
 }
 
 .sm-icons {
-  border: 2px solid #ea1b23;
-  padding: 9px;
-  svg {
-    path {
-
-      fill: #ea1b23;
+  a {
+    display: block;
+    border: 2px solid #ea1b23;
+    padding: 9px;
+    svg {
+      path {
+        fill: #ea1b23;
+      }
     }
   }
 }

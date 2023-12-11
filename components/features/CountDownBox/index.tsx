@@ -101,7 +101,7 @@ export function CountDownBox() {
               <div></div>
               <div className="relative top-[15px] flex gap-x-5 items-center flex-wrap justify-center">
                 <span>Token Price:</span>
-                <span className="font-bold">2 ADA - 1 CTB</span>
+                <span className="font-bold">1 CTB - 2 ADA</span>
               </div>
               <div></div>
             </div>
@@ -158,7 +158,6 @@ export function CountDownBox() {
                       placeholder="0.00"
                       onChange={(e) => {
                         handleSetReceiveValue(e.target.value);
-                        // same as pay value since 1 ADA = 1 CTB
                       }}
                       value={receiveValue}
                     />

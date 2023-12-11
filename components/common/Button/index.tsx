@@ -16,7 +16,8 @@ function Button({
   state = "idle",
   onChangeState,
   href,
-  target = '_self',
+  target = "_self",
+  rel,
   ...rest
 }: {
   disabled?: boolean;
@@ -28,6 +29,7 @@ function Button({
   rest?: any;
   state?: IComponentState;
   href?: string;
+  rel?: string;
   target?: React.HTMLAttributeAnchorTarget;
   onChangeState?: Dispatch<SetStateAction<IComponentState>>;
 }) {
@@ -36,13 +38,21 @@ function Button({
   if (form) containerClass += ` ${styles[form]}`;
   if (state === "loading") containerClass += ` ${styles["loading"]}`;
   const isLoading = state === "loading";
+  if (rel && href) (rest as any).rel = rel;
+  if (href && target === "_blank" && !rel)
+    (rest as any).rel = "noopener noreferrer";
 
   if (href) {
     return (
       <Link href={href}>
-        <a className={containerClass} onClick={onClick} {...rest} target={target}>
+        <a
+          className={containerClass}
+          onClick={onClick}
+          {...rest}
+          target={target}
+        >
           {isLoading === true && <SpinnerIcon />}
-          {children}
+          <div>{children}</div>
         </a>
       </Link>
     );

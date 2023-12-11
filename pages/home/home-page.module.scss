@@ -1,4 +1,22 @@
 .container {
+  @keyframes gradient {
+    0% {
+      background-position: 0% 100%;
+    }
+
+    25% {
+      background-position: 50% 100%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    75% {
+      background-position: 50% 100%;
+    }
+    100% {
+      background-position: 0% 100%;
+    }
+  }
   &::before {
     width: 100vw;
     height: 660px;
@@ -9,6 +27,7 @@
     left: 0;
     background: url("https://res.cloudinary.com/davien21/image/upload/v1693246915/city-boys/top-bg_wtx5ub.png");
   }
+
   .header {
     background: linear-gradient(
       132deg,
@@ -30,6 +49,8 @@
     }
     line-height: 90%;
     letter-spacing: 3.6px;
+    animation: gradient 10s ease infinite;
+    background-size: 300% 100%;
   }
 }
 
@@ -37,7 +58,7 @@ section.one {
   overflow: hidden;
   position: relative;
   z-index: 11;
-  &> div:first-child {
+  & > div:first-child {
     position: relative;
     z-index: 1;
     isolation: isolate;

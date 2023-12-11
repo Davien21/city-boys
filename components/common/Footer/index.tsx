@@ -30,21 +30,51 @@ function Footer() {
           </div>
         </div>
         <ul className="xl:col-span-3 order-2 sm:order-2 uppercase flex-props gap-x-8">
-          <li>Terms & Conditions</li>
+          <li>
+            <a
+              className="hover:text-red-4"
+              href="https://docs.city-boys.com/terms-and-conditions"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Terms & Conditions
+            </a>
+          </li>
         </ul>
         <div className="xl:col-span-5 order-1 sm:order-3 flex-props gap-y-5 gap-x-10">
           <span className="text-center sm:text-left">
-            Have an issue? Contact mayor@city-boys.com
+            Have an issue? Contact{" "}
+            <a className="hover:text-red-4" href="mailto:mayor@city-boys.com">
+              mayor@city-boys.com
+            </a>
           </span>
           <div className="flex gap-x-4">
             <div className={`${styles["sm-icons"]}`}>
-              <TwitterIcon />
+              <a
+                href="https://twitter.com/cityboystoken"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TwitterIcon />
+              </a>
             </div>
             <div className={`${styles["sm-icons"]}`}>
-              <TelegramIcon />
+              <a
+                href="https://t.me/cityboystoken"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TelegramIcon />
+              </a>
             </div>
             <div className={`${styles["sm-icons"]}`}>
-              <DiscordIcon />
+              <a
+                href="https://discord.com/invite/ZmpCJkDSQj"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <DiscordIcon />
+              </a>
             </div>
           </div>
         </div>
