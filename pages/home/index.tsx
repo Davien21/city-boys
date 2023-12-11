@@ -270,7 +270,7 @@ function HomePage() {
                   </div>
                 </div>
                 <Button
-                  href=""
+                  href="https://docs.city-boys.com/welcome-to-cityboys#ctb-tokenomics"
                   target="_blank"
                   form="primary"
                   className="mt-16"
