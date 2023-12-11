@@ -28,7 +28,14 @@ export function CountDownBox() {
       return false;
     }
   };
-  return (
+
+  const getMax = async () => {
+    let max = 0
+    // logic to get max ctb that can be purchased
+    return max;
+  }
+  
+   return (
     <>
       <div className={`${styles["container"]}`}>
         <div className={`${styles["countdown-container"]} `}>
@@ -107,8 +114,10 @@ export function CountDownBox() {
                     <input
                       type="number"
                       placeholder="0.00"
-                      onChange={(e) => setReceiveValue(e.target.value)}
-                      value={receiveValue}
+                      onChange={(e) => {
+                        setPayValue(e.target.value);
+                      }}
+                      value={payValue}
                     />
                   </div>
                 </div>
