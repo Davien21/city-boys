@@ -31,7 +31,7 @@ export function CountDownTimer({ endTime }: { endTime: number }) {
       const minutes = Math.floor(difference / 60) % 60;
       difference -= minutes * 60;
 
-      const seconds = Math.round(difference % 60);
+      const seconds = Math.floor(difference % 60);
 
       const timeDetails = {
         days: days.toString().padStart(2, "0"),

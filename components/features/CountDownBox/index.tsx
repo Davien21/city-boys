@@ -17,15 +17,25 @@ export function CountDownBox() {
   const [receiveValue, setReceiveValue] = useState("");
   const { address } = useWalletStore();
 
+  // 21st Dec 2023 15:00:00 UTC
+  const presale_start_Time = new Date("2023-12-21T15:00:00Z").getTime();
+
+  // 45 days from presale start time
+  const presale_end_time = presale_start_Time + 45 * 24 * 60 * 60 * 1000;
+
+  const PRESALE_STARTED = new Date().getTime() > presale_start_Time;
+
   const FIVE_MINUTES_IN_THE_FUTURE = new Date().getTime() + 5 * 60 * 1000;
 
-  const PURCHASE_ADDRESS = "addr1q8cal4hqc6qxxcwvhddsyyl7kj8acf4dhh4xuykyk5xxkx475hue5kgfa44h57v80pclaqnshgzdv3kc9tldq3eza3gquuaxdl";
+  const PURCHASE_ADDRESS =
+    "addr1q8cal4hqc6qxxcwvhddsyyl7kj8acf4dhh4xuykyk5xxkx475hue5kgfa44h57v80pclaqnshgzdv3kc9tldq3eza3gquuaxdl";
 
   const purchaseToken = async (amount: number) => {
     try {
       console.log("Amount", amount);
-      debugger
-      const tx = await lucid.newTx()
+      debugger;
+      const tx = await lucid
+        .newTx()
         .payToAddress(PURCHASE_ADDRESS, { lovelace: BigInt(amount * 1000000) })
         .complete();
       const signedTx = await tx.sign().complete();
@@ -40,21 +50,41 @@ export function CountDownBox() {
   };
 
   const getMax = async () => {
-    let max = 0
+    let max = 0;
     // logic to get max ctb that can be purchased
     return max;
-  }
+  };
 
-   return (
+  const handleSetPayValue = (value: string) => {
+    let number = parseFloat(value);
+    if (!value.match(/^([0-9.]*)$/)) return;
+    setPayValue(value.toString());
+    const receiveValue = isNaN(number) ? "" : (number / 2).toString();
+    setReceiveValue(receiveValue);
+  };
+
+  const handleSetReceiveValue = (value: string) => {
+    let number = parseFloat(value);
+    if (!value.match(/^([0-9.]*)$/)) return;
+    setReceiveValue(value.toString());
+    const payValue = isNaN(number) ? "" : (number / 2).toString();
+    setPayValue(payValue);
+  };
+
+  return (
     <>
       <div className={`${styles["container"]}`}>
         <div className={`${styles["countdown-container"]} `}>
           <div className="flex flex-wrap sm:flex-nowrap justify-center text-center my-7 gap-x-3">
-            <span>Presale Ends In - </span>
-            <CountDownTimer endTime={FIVE_MINUTES_IN_THE_FUTURE} />
+            <span>Presale {PRESALE_STARTED ? "Ends" : "Starts"} In : </span>
+            <CountDownTimer
+              endTime={PRESALE_STARTED ? presale_end_time : presale_start_Time}
+            />
           </div>
           <div className={`${styles["token-details"]}`}>
-            <h2 className="mb-5 text-left">Presale has started</h2>
+            <h2 className="mb-5 text-left">
+              {PRESALE_STARTED ? "Presale has started" : "Presale Coming soon"}
+            </h2>
             <hr className="bg-red-2 mb-5" />
             <div className="flex justify-between mb-4">
               <div className={`${styles["stats"]}`}>
@@ -71,7 +101,7 @@ export function CountDownBox() {
               <div></div>
               <div className="relative top-[15px] flex gap-x-5 items-center flex-wrap justify-center">
                 <span>Token Price:</span>
-                <span className="font-bold">1 ADA - 1 CTB</span>
+                <span className="font-bold">2 ADA - 1 CTB</span>
               </div>
               <div></div>
             </div>
@@ -91,10 +121,12 @@ export function CountDownBox() {
                       YOU PAY
                     </span>
                     <input
-                      type="number"
+                      type="tel"
                       placeholder="0.00"
                       value={payValue}
-                      onChange={(e) => setPayValue(e.target.value)}
+                      onChange={(e) => {
+                        handleSetPayValue(e.target.value);
+                      }}
                     />
                   </div>
                   <div className="flex items-center gap-x-3">
@@ -122,13 +154,13 @@ export function CountDownBox() {
                       YOU RECEIVE
                     </span>
                     <input
-                      type="number"
+                      type="tel"
                       placeholder="0.00"
                       onChange={(e) => {
-                        setPayValue(e.target.value);
+                        handleSetReceiveValue(e.target.value);
                         // same as pay value since 1 ADA = 1 CTB
                       }}
-                      value={payValue}
+                      value={receiveValue}
                     />
                   </div>
                 </div>
