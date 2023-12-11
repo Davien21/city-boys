@@ -34,7 +34,7 @@ export function CountDownBox() {
     // logic to get max ctb that can be purchased
     return max;
   }
-  
+
    return (
     <>
       <div className={`${styles["container"]}`}>
@@ -116,6 +116,7 @@ export function CountDownBox() {
                       placeholder="0.00"
                       onChange={(e) => {
                         setPayValue(e.target.value);
+                        // same as pay value since 1 ADA = 1 CTB
                       }}
                       value={payValue}
                     />
