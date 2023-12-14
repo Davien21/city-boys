@@ -15,7 +15,7 @@ import {
 } from "assets/images";
 import toast from "services/toastService";
 import { useWalletStore } from "store";
-import { lucid } from "utils/lucidUtils";
+import { lucid, resetLucid } from "utils/lucidUtils";
 import { Button } from "../Button";
 
 type WalletType = "nami" | "eternl" | "vespr" | "lace" | "typhoon";
@@ -38,16 +38,9 @@ export function LogoutWalletModal() {
     try {
       if (typeof window !== "undefined") {
         console.log(window.cardano);
-        // setAddress("");
-        // setIsLogoutModalOpen(false);
-        // let address = "";
-        // const api = await window.cardano[id]?.enable();
-        // lucid.selectWallet(api);
-        // address = await lucid.wallet.address();
-        // toast.success("Wallet connected successfully"); // show success toast
-        // setAddress(address); // set address in store
-        // setIsLogoutModalOpen(false); // close modal
-        // return address;
+        setAddress("");
+        setIsLogoutModalOpen(false);
+        await resetLucid();
       }
     } catch (error) {
       toast.error("Error disconnecting wallet");
