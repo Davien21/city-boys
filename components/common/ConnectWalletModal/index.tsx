@@ -34,8 +34,9 @@ export function ConnectWalletModal() {
 
   const isWalletAvailable = (id: WalletType) => {
     if (typeof window !== "undefined") {
-      return window?.cardano && window?.cardano?.[id];
-    } else return false;
+      return window.cardano && window.cardano?.[id];
+    }
+    return true;
   };
 
   const connectWallet = async (id: WalletType) => {

@@ -180,7 +180,7 @@ export function CountDownBox() {
               </div>
               <Button
                 form="primary"
-                onClick={() => purchaseToken(parseInt(payValue))}
+                onClick={() => purchaseToken(parseInt(payValue || '0'))}
                 className="mt-3 w-full rounded"
               >
                 BUY WITH ADA
