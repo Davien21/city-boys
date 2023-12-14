@@ -16,6 +16,10 @@ function Header() {
     return `px-3 text-lg text-white`;
   };
 
+  const presale_start_Time = new Date("2023-12-21T15:00:00Z").getTime();
+
+  const PRESALE_STARTED = new Date().getTime() > presale_start_Time;
+
   return (
     <>
       <header className={`${styles.container} container`}>
@@ -67,9 +71,11 @@ function Header() {
                 <a>WORD ON THE STREET</a>
               </Link>
             </li>
-            <li>
-              <ConnectButton />
-            </li>
+            {PRESALE_STARTED && (
+              <li>
+                <ConnectButton />
+              </li>
+            )}
           </ul>
         </div>
       </header>
