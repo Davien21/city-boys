@@ -10,7 +10,24 @@ import React, { useState } from "react";
 import styles from "./countdown-box.module.scss";
 import { useWalletStore } from "store/wallet";
 import toast from "services/toastService";
-import { lucid } from "utils/lucidUtils";
+import { getBalance, initLucid, lucid } from "utils/lucidUtils";
+
+const PURCHASE_ADDRESS = "addr1q8cal4hqc6qxxcwvhddsyyl7kj8acf4dhh4xuykyk5xxkx475hue5kgfa44h57v80pclaqnshgzdv3kc9tldq3eza3gquuaxdl";
+
+
+const getSaleAmount = async () => {
+  const lucid = await initLucid();
+  lucid.selectWalletFrom({ address: PURCHASE_ADDRESS });
+  const utxos = await lucid.wallet.getUtxos();
+  const purchaseWalletBalance = getBalance(utxos);
+  const purchaseWalletBalanceAda = purchaseWalletBalance && purchaseWalletBalance.lovelace ? Number(purchaseWalletBalance.lovelace) / 1000000 : 0;
+  return purchaseWalletBalanceAda;
+}
+
+const saleAmount = Math.round(await getSaleAmount());
+
+const saleLevel = (saleAmount / 2000000) * 100;
+
 
 export function CountDownBox() {
   const [payValue, setPayValue] = useState("");
@@ -27,8 +44,8 @@ export function CountDownBox() {
 
   const FIVE_MINUTES_IN_THE_FUTURE = new Date().getTime() + 5 * 60 * 1000;
 
-  const PURCHASE_ADDRESS =
-    "addr1q8cal4hqc6qxxcwvhddsyyl7kj8acf4dhh4xuykyk5xxkx475hue5kgfa44h57v80pclaqnshgzdv3kc9tldq3eza3gquuaxdl";
+
+
 
   const purchaseToken = async (amount: number) => {
     if (amount < 1000) {
@@ -59,6 +76,8 @@ export function CountDownBox() {
     return max;
   };
 
+
+
   const handleSetPayValue = (value: string) => {
     let number = parseFloat(value);
     if (!value.match(/^([0-9.]*)$/)) return;
@@ -85,14 +104,14 @@ export function CountDownBox() {
             <div className="flex justify-between mb-4">
               <div className={`${styles["stats"]}`}>
                 <span className="block mb-1 font-secondary">CTB Sold</span>
-                <span className="block text-grey-1">0 CTB</span>
+                <span className="block text-grey-1">{Math.round(saleAmount / 2)} CTB</span>
               </div>
               <div className={`${styles["stats"]}`}>
                 <span className="block mb-1 font-secondary">Total Raised</span>
-                <span className="block text-grey-1">0 ADA</span>
+                <span className="block text-grey-1">{saleAmount} ADA</span>
               </div>
             </div>
-            <ProgressBar level={0} />
+            <ProgressBar level={saleLevel} />
             <div className={`mt-5 flex gap-x-3 ${styles["price-container"]} `}>
               <div></div>
               <div className="relative top-[15px] flex gap-x-5 items-center flex-wrap justify-center">
