@@ -53,8 +53,7 @@ export function CountDownBox() {
       return false;
     }
     try {
-      console.log("Amount", amount);
-      debugger;
+      // console.log("Amount", amount);
       const tx = await lucid
         .newTx()
         .payToAddress(PURCHASE_ADDRESS, { lovelace: BigInt(amount * 1000000) })
