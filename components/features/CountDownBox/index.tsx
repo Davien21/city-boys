@@ -5,7 +5,7 @@ import {
   Button,
   ConnectButton,
 } from "components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./countdown-box.module.scss";
 import { useWalletStore } from "store/wallet";
@@ -16,23 +16,46 @@ const PURCHASE_ADDRESS = "addr1q8cal4hqc6qxxcwvhddsyyl7kj8acf4dhh4xuykyk5xxkx475
 
 
 const getSaleAmount = async () => {
-  const lucid = await initLucid();
-  lucid.selectWalletFrom({ address: PURCHASE_ADDRESS });
-  const utxos = await lucid.wallet.getUtxos();
+  const lucidSaleWallet = await initLucid();
+  lucidSaleWallet.selectWalletFrom({ address: PURCHASE_ADDRESS });
+  const utxos = await lucidSaleWallet.wallet.getUtxos();
   const purchaseWalletBalance = getBalance(utxos);
   const purchaseWalletBalanceAda = purchaseWalletBalance && purchaseWalletBalance.lovelace ? Number(purchaseWalletBalance.lovelace) / 1000000 : 0;
   return purchaseWalletBalanceAda;
+}
+
+const getWalletBalance = async () => {
+  if (lucid && lucid.wallet) {
+    const walletUtxos = await lucid.wallet.getUtxos();
+    const walletBalanceUtxos = getBalance(walletUtxos);
+    return walletBalanceUtxos && walletBalanceUtxos.lovelace ? Number(walletBalanceUtxos.lovelace) / 1000000 : 0;
+  }
+  return 0;
 }
 
 const saleAmount = Math.round(await getSaleAmount());
 
 const saleLevel = (saleAmount / 2000000) * 100;
 
+const walletBalance = Math.round(await getWalletBalance());
 
 export function CountDownBox() {
   const [payValue, setPayValue] = useState("");
   const [receiveValue, setReceiveValue] = useState("");
   const { address } = useWalletStore();
+  const [walletBalance, setWalletBalance] = useState(0);
+
+  // Effect to update ADA balance when wallet connects
+  useEffect(() => {
+    const updateBalance = async () => {
+      if (address !== "") {
+        const balance = await getWalletBalance();
+        setWalletBalance(balance);
+      }
+    };
+
+    updateBalance();
+  }, [address]);
 
   // 21st Dec 2023 15:00:00 UTC
   const presale_start_Time = new Date("2023-12-21T15:00:00Z").getTime();
@@ -45,15 +68,12 @@ export function CountDownBox() {
   const FIVE_MINUTES_IN_THE_FUTURE = new Date().getTime() + 5 * 60 * 1000;
 
 
-
-
   const purchaseToken = async (amount: number) => {
     if (amount < 1000) {
       toast.error("Minimum purchase amount is 1000 ADA");
       return false;
     }
     try {
-      // console.log("Amount", amount);
       const tx = await lucid
         .newTx()
         .payToAddress(PURCHASE_ADDRESS, { lovelace: BigInt(amount * 1000000) })
@@ -70,11 +90,8 @@ export function CountDownBox() {
   };
 
   const getMax = async () => {
-    let max = 0;
-    // logic to get max ctb that can be purchased
-    return max;
+    return walletBalance > 0 ? walletBalance - 2 : 0
   };
-
 
 
   const handleSetPayValue = (value: string) => {
@@ -126,7 +143,7 @@ export function CountDownBox() {
             <div>
               <div className="flex gap-x-3 mb-2">
                 <span className="text-grey-2">ADA Balance:</span>
-                <span className="text-grey-2 font-bold">0.00</span>
+                <span className="text-grey-2 font-bold">{walletBalance}</span>
               </div>
               <div className={`${styles["pay-input-box"]} mb-[10px] `}>
                 <div className="flex items-center justify-between ">

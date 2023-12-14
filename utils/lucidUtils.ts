@@ -24,4 +24,8 @@ export const getBalance = (utxos: UTxO[]) => {
     }
 }
 
-export const lucid = await initLucid();
+export let lucid = await initLucid();
+
+export const resetLucid = async () => {
+    lucid = await initLucid();
+}
