@@ -18,6 +18,6 @@ export const useWalletStore = create<MyState>()((set, get) => ({
   setIsLogoutModalOpen: (isLogoutModalOpen: boolean) => {
     set({ isLogoutModalOpen });
   },
-  address: "sads324rda3243rd31243rds312453refs32435ref",
+  address: "",
   setAddress: (address: string) => set({ address }),
 }));
