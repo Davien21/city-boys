@@ -31,6 +31,10 @@ export function CountDownBox() {
     "addr1q8cal4hqc6qxxcwvhddsyyl7kj8acf4dhh4xuykyk5xxkx475hue5kgfa44h57v80pclaqnshgzdv3kc9tldq3eza3gquuaxdl";
 
   const purchaseToken = async (amount: number) => {
+    if (amount < 1000) {
+      toast.error("Minimum purchase amount is 1000 ADA");
+      return false;
+    }
     try {
       console.log("Amount", amount);
       debugger;
@@ -61,14 +65,6 @@ export function CountDownBox() {
     setPayValue(value.toString());
     const receiveValue = isNaN(number) ? "" : (number / 2).toString();
     setReceiveValue(receiveValue);
-  };
-
-  const handleSetReceiveValue = (value: string) => {
-    let number = parseFloat(value);
-    if (!value.match(/^([0-9.]*)$/)) return;
-    setReceiveValue(value.toString());
-    const payValue = isNaN(number) ? "" : (number / 2).toString();
-    setPayValue(payValue);
   };
 
   return (
@@ -153,14 +149,13 @@ export function CountDownBox() {
                     <span className="block text-sm font-light mb-1 text-grey-3">
                       YOU RECEIVE
                     </span>
-                    <input
-                      type="tel"
-                      placeholder="0.00"
-                      onChange={(e) => {
-                        handleSetReceiveValue(e.target.value);
-                      }}
-                      value={receiveValue}
-                    />
+                    <div className={`${styles["receive-box"]}`}>
+                      {receiveValue ? (
+                        <span>{receiveValue}</span>
+                      ) : (
+                        <span className={`${styles["empty"]}`}>0.00</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

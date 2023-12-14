@@ -15,6 +15,8 @@ export * from "./common/menu";
 export * from "./common/CoinSelect";
 export * from "./common/Modal";
 export * from "./common/ConnectWalletModal";
+export * from "./common/LogoutWalletModal";
+
 export * from "./common/CountDownTimer";
 
 export * from "./features/CountDownBox";

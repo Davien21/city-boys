@@ -4,6 +4,7 @@ import MenuIcon from "./menu.svg";
 import DownArrowIcon from "./down-arrow.svg";
 
 import DiscordIcon from "./discord.svg";
+import CopyIcon from "./copy.svg";
 import GoArrowIcon from "./go-arrow-icon.svg";
 import TwitterIcon from "./twitter.svg";
 import TelegramIcon from "./telegram.svg";
@@ -19,6 +20,7 @@ import VerifiedIcon from "./verified.svg";
 export {
   GoArrowIcon,
   CopyrightIcon,
+  CopyIcon,
   AdaIcon,
   TooltipIcon,
   TwitterIcon,

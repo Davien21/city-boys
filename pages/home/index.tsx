@@ -269,8 +269,7 @@ function HomePage() {
                     <p className="text-3xl font-semibold">4,000,000</p>
                   </div>
                 </div>
-                <Button
-                  href="https://docs.city-boys.com/welcome-to-cityboys#ctb-tokenomics"
+                <Button 
                   target="_blank"
                   form="primary"
                   className="mt-16"

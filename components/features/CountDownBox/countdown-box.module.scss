@@ -83,6 +83,9 @@
     background: rgba(11, 2, 20, 0.4);
     backdrop-filter: blur(22px);
   }
+  .receive-box {
+
+  }
   .pay-input-box {
     .max-text {
       display: none;
@@ -124,7 +127,7 @@
   .receive-input-box {
     @apply px-5 py-3 isolate rounded-sm border border-transparent;
     background-color: #140a1a;
-    input {
+    .receive-box {
       outline: none;
       border: none !important;
       width: 100%;
@@ -141,7 +144,7 @@
       margin-left: -5px;
       display: block;
 
-      &::placeholder {
+      .empty {
         color: var(--grey-2);
         padding-left: 3px;
       }

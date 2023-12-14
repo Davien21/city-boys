@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import styles from "./connect-wallet-modal.module.scss";
 import { ModalParentVariants } from "animations";
 import { useLockScroll, useModal } from "hooks";
@@ -34,9 +34,8 @@ export function ConnectWalletModal() {
 
   const isWalletAvailable = (id: WalletType) => {
     if (typeof window !== "undefined") {
-      return window.cardano && window.cardano?.[id];
-    }
-    return true;
+      return window?.cardano && window?.cardano?.[id];
+    } else return false;
   };
 
   const connectWallet = async (id: WalletType) => {
