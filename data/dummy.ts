@@ -50,21 +50,21 @@ export const currentQuestionsData = [
   {
     question: "What is CityBoys Project?",
     answer:
-      "Cityboys is a digital movement with a utility token compatible with the Cardano native token standard.",
+      "Cityboys is a Digital Web3 Open World being made possible with Generative AI & Virtual game engines where users have the freedom to own and personalize their unique 3D avatars, each represented as an NFT with ownership on the Cardano blockchain.",
   },
   {
     question: "Why was $CTB token created?",
     answer:
-      "The current bear market has created a lot of simps, so the City council is out to take the city back with the $CTB token. Level up, become a city boy and secure the bag.",
+      "The $CTB token was created to be the main utility token of Cityboys ecosystem. It would have multiple utilities asides staking & farming, it will be used for Governance, customizing your digital persona and so much more.",
   },
   {
-    question: "When Will The $CTB Presale be announced?",
+    question: "When Is The $CTB Presale Date?",
     answer:
-      "The Mayor and the council are making final touches to ensure that our city is ready, join our community council on twitter & discord to stay up to date on the $CTB presale date.",
+      "The CTB presale is 21st december and will run for a period of 55 days or if the presale allocation is sold out. Any unsold tokens after the presale has ended will be burnt. Join our community council on Twitter & Discord to be notified the minute the presale starts.",
   },
   {
     question: "What Is The $CTB Listing Price?",
     answer:
-      "$CTB will be listed 10 hours after the presale ends on Minswap at a rate 50% higher than the presale rate.",
+      "$CTB will be listed 6 hours after the presale ends on Minswap at a rate 25% higher than the presale rate.",
   },
 ];

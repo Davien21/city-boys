@@ -115,11 +115,15 @@ export function CountDownBox() {
     <>
       <div className={`${styles["container"]}`}>
         <div className={`${styles["countdown-container"]} `}>
-          <div className="flex flex-wrap sm:flex-nowrap justify-center text-center my-7 gap-x-3">
+          <div className="flex flex-wrap sm:flex-nowrap justify-center text-center mt-7 mb-4 gap-x-3">
             <span>Presale {PRESALE_STARTED ? "Ends" : "Starts"} In : </span>
             <CountDownTimer
               endTime={PRESALE_STARTED ? presale_end_time : presale_start_Time}
             />
+          </div>
+          <div className="flex mb-5 justify-center text-center items-center gap-x-1">
+            <span>Presale Allocation:</span>
+            <b>500,000 CTB</b>
           </div>
           <div className={`${styles["token-details"]}`}>
             <h2 className="mb-5 text-left">
@@ -141,11 +145,15 @@ export function CountDownBox() {
             <ProgressBar level={saleLevel} />
             <div className={`mt-5 flex gap-x-3 ${styles["price-container"]} `}>
               <div></div>
-              <div className="relative top-[15px] flex gap-x-5 items-center flex-wrap justify-center">
+              <div className="relative top-[12px] flex gap-x-5 items-center flex-wrap justify-center">
                 <span>Token Price:</span>
                 <span className="font-bold">1 CTB - 2 ADA</span>
               </div>
               <div></div>
+            </div>
+            <div className="relative top-[20px] flex gap-x-5 items-center flex-wrap justify-center text-xs">
+              <span>Listing Price:</span>
+              <span className="font-bold">1 CTB - 2.5 ADA</span>
             </div>
           </div>
         </div>
