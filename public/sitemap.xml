@@ -3,43 +3,31 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <url>
-    <loc>https://blockchainhub.africa/</loc>
+    <loc>https://city-boys</loc>
     <lastmod>2021-08-08T00:37:28+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://blockchainhub.africa/about</loc>
+    <loc>https://city-boys/#about</loc>
     <lastmod>2021-08-08T00:37:28+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://blockchainhub.africa/events</loc>
+    <loc>https://city-boys/#city-council</loc>
     <lastmod>2021-08-08T00:37:28+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://blockchainhub.africa/work</loc>
+    <loc>https://city-boys#citynomics</loc>
     <lastmod>2021-08-08T00:37:28+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://blockchainhub.africa/blog</loc>
-    <lastmod>2021-08-08T00:37:28+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://blockchainhub.africa/contact</loc>
-    <lastmod>2021-08-08T00:37:28+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://blockchainhub.africa/hire-us</loc>
+    <loc>https://city-boys/#faq</loc>
     <lastmod>2021-08-08T00:37:28+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>

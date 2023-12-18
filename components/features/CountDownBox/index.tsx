@@ -160,7 +160,6 @@ export function CountDownBox() {
         <div className={`${styles["purchase-box"]} `}>
           {PRESALE_STARTED ? (
             <>
-              {" "}
               {address ? (
                 <div>
                   <div className="flex gap-x-3 mb-2">
@@ -232,6 +231,15 @@ export function CountDownBox() {
                   <ConnectButton text={"Connect Wallet to Purchase"} />
                 </div>
               )}
+              <div className="flex gap-x-1 gap-y-4 justify-center text-center text-xs mt-4">
+                <span>Not enough ADA?</span>
+                <a
+                  href="https://docs.city-boys.com/how-to-buy-ada"
+                  className="hover:text-red-4 font-bold"
+                >
+                  Buy ADA
+                </a>
+              </div>
             </>
           ) : (
             <div className="flex justify-center">Coming soon</div>

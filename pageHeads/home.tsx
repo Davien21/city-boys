@@ -4,18 +4,18 @@ const HomePageHead = () => {
   return (
     <>
       <NextSeo
-        title="Kompare currency converter | Home"
-        description="Kompare is a powerful Chrome extension for converting currencies and tracking stock prices. Try it now!"
+        title="City Boys | Home"
+        description="Cityboys is a Digital Web3 Open World being made possible with Generative AI & Virtual game engines."
         openGraph={{
-          title: "Kompare currency converter | Home",
+          title: "City Boys | Home",
           description:
-            "Kompare is a powerful Chrome extension for converting currencies and tracking stock prices. Try it now!",
+            "Cityboys is a Digital Web3 Open World being made possible with Generative AI & Virtual game engines.",
           images: [
             {
-              url: "https://res.cloudinary.com/davien21/image/upload/v1680819583/kompare/kompare-opengraph_belz2r.png",
+              url: "https://res.cloudinary.com/davien21/image/upload/v1680819583/city Boys/city Boys-opengraph_belz2r.png",
               width: 1200,
               height: 630,
-              alt: "Kompare Chrome extension",
+              alt: "City Boys",
             },
           ],
         }}

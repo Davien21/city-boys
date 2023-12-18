@@ -12,9 +12,36 @@ import {
 import styles from "./home-page.module.scss";
 import { DiscordIcon, TelegramIcon, TwitterIcon } from "assets/images";
 import { currentQuestionsData } from "data/dummy";
+import Script from "next/script";
 function HomePage() {
+  const isLive = process.env.NODE_ENV === "production";
+
   return (
     <>
+      {isLive && (
+        <>
+          <Script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-62M7JT5HR4"
+          ></Script>
+          <Script id="google-analytics">
+            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','G-62M7JT5HR4');
+        `}
+          </Script>
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=G-62M7JT5HR4"
+              height="0"
+              width="0"
+            ></iframe>
+          </noscript>
+        </>
+      )}
+
       <Header />
       <main className={`${styles["container"]}`}>
         <section className={`${styles["one"]}`}>
@@ -117,8 +144,9 @@ function HomePage() {
                   next moonshot, {`you're`} strategizing, grinding, and
                   reconquering your city, one avatar at a time.
                   <br /> <br />
-                  Join our movement, don your {`city's`} colors, rep your streets
-                  because city life {`isn't`} just a game, {`it's`} the ultimate hustle.
+                  Join our movement, don your {`city's`} colors, rep your
+                  streets because city life {`isn't`} just a game, {`it's`} the
+                  ultimate hustle.
                 </p>
               </div>
             </div>
@@ -272,7 +300,12 @@ function HomePage() {
                     <p className="text-3xl font-semibold">650,000</p>
                   </div>
                 </div>
-                <Button target="_blank" form="primary" className="mt-16">
+                <Button
+                  target="_blank"
+                  form="primary"
+                  className="mt-16"
+                  href="https://docs.city-boys.com/welcome-to-cityboys#ctb-tokenomics"
+                >
                   READ FULL CITYNOMICS
                 </Button>
               </div>
