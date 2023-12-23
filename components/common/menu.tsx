@@ -7,34 +7,43 @@ function Menu() {
   const activeRoute = useRouter().asPath;
 
   const activeRouteClass = (route: string) => {
-    if (activeRoute.includes(route)) return `px-3 text-base text-white `;
+    let className = `px-3 text-base text-white uppercase `;
+    if (activeRoute.includes(route)) className += ``;
 
-    return `px-3 text-base text-white`;
+    return className;
   };
+
+  const presale_start_Time = new Date("2023-12-21T15:00:00Z").getTime();
+
+  const PRESALE_STARTED = new Date().getTime() > presale_start_Time;
 
   return (
     <nav className="mt-16">
       <ul className="items-center lg:hidden font-bo">
-        <li className={activeRouteClass("")}>
-          <Link href="">About Out City</Link>
+        <li className={activeRouteClass("#about")}>
+          <Link href="#about">About Out City</Link>
         </li>
-        <li className={activeRouteClass("/work")}>
-          <Link href="">City Council</Link>
+        <li className={activeRouteClass("#city-council")}>
+          <Link href="#city-council">City Council</Link>
         </li>
-        <li className={activeRouteClass("/events")}>
-          <Link href="/events">Citynomics</Link>
+        <li className={activeRouteClass("#citynomics")}>
+          <Link href="#citynomics">Citynomics</Link>
         </li>
         <li className={activeRouteClass("/blog")}>
-          <Link href="/blog">Citymap</Link>
+          <Link href="https://docs.city-boys.com/team">
+            <a target="_blank" rel="noopener noreferrer">
+              TEAM
+            </a>
+          </Link>
         </li>
-        <li className={activeRouteClass("/contact")}>
-          <Link href="/contact">Word on the street</Link>
+        <li className={activeRouteClass("#faq")}>
+          <Link href="#faq">Word on the street</Link>
         </li>
-        <li>
-          <a>
+        {PRESALE_STARTED && (
+          <li>
             <ConnectButton />
-          </a>
-        </li>
+          </li>
+        )}
       </ul>
     </nav>
   );

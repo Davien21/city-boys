@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <link key={getRandomKey()} rel="icon" href="./favicon.ico" />
       </Head>
-      {/* <PageHeadSetup /> */}
+      <PageHeadSetup />
       <ToastContainer position="top-center" autoClose={5000} />
       <ConnectWalletModal />
       <LogoutWalletModal />

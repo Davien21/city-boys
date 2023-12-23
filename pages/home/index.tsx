@@ -11,10 +11,37 @@ import {
 
 import styles from "./home-page.module.scss";
 import { DiscordIcon, TelegramIcon, TwitterIcon } from "assets/images";
-import { currentQuestionsData, questionsData } from "data/dummy";
+import { currentQuestionsData } from "data/dummy";
+import Script from "next/script";
 function HomePage() {
+  const isLive = process.env.NODE_ENV === "production";
+
   return (
     <>
+      {isLive && (
+        <>
+          <Script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-62M7JT5HR4"
+          ></Script>
+          <Script id="google-analytics">
+            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','G-62M7JT5HR4');
+        `}
+          </Script>
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=G-62M7JT5HR4"
+              height="0"
+              width="0"
+            ></iframe>
+          </noscript>
+        </>
+      )}
+
       <Header />
       <main className={`${styles["container"]}`}>
         <section className={`${styles["one"]}`}>
@@ -22,11 +49,12 @@ function HomePage() {
             <div className="flex justify-around flex-wrap md:flex-nowrap gap-y-20">
               <div className="my-auto mx-auto md:mx-0 max-w-[495px] text-center md:text-left">
                 <h1 className={`${styles["header"]} font-header pl-3.5 mb-6`}>
-                Cash the chaos flip the skyline
+                  Cash the chaos flip the skyline
                 </h1>
                 <p className="text-lg mb-14 sm:text-xl text-center md:text-left">
-                  City Boys Coin, where every neon light could be your next
-                  crypto green. Turn your hustle into your empire.
+                  Welcome to CityBoys, where every neon light could be your next
+                  green. Own, personalize your 3D avatars & turn your hustle
+                  into your empire.
                 </p>
                 <div className="gap-6 flex flex-wrap sm:flex-nowrap justify-center md:justify-start">
                   <Button
@@ -104,23 +132,21 @@ function HomePage() {
               <div className="md:col-span-5">
                 <p className="text-sm md:text-lg">
                   Are your dreams rusting like forgotten relics in the urban
-                  labyrinth? Come ride with us on this grind, and {`let's`}{" "}
-                  reclaim our city, brick by brick, block by block with $CTB.{" "}
+                  labyrinth?
                   <br />
-                  $CTB {`isn't`} merely a token; {`it's`} a revolution fueled by
-                  the grit to retake {`what's`} ours, solidarity, and the hustle
-                  to construct empires in this web3 chaos. As City Boys, we
-                  hoist the flag of the urban pulse: iron will, streetwise
-                  tactics, and a swagger that lights up the city nights. With
-                  our token,
-                  {`you're`} not just chasing the next moonshot, {`you're`}
-                  strategizing, grinding, and reconquering your city, one
-                  district at a time. <br /> <br /> Join our movement, feel the
-                  rush of the concrete under your feet, transform those setbacks
-                  into skyscrapers. Dwn your {`city's`} colors, rep your
-                  streets. Because city life {`isn't`} just a game, {`it's`} the
-                  ultimate hustle. And us City Boys? {`We're`} the players
-                  making the plays, not the pawns.
+                  With Cityboys you can bring your imaginations alive in our
+                  web3 open world where you can create, own and personalize your
+                  unique 3d avatars made possible by Generative AI and powered
+                  by the $CTB token. $CTB {`isn't`} merely a token; {`it's`} a
+                  revolution fueled by the grit to retake {`what's`} ours and
+                  the hustle to construct digital empires in this web3 chaos.
+                  <br /> <br /> With our token, {`you're`} not just chasing the
+                  next moonshot, {`you're`} strategizing, grinding, and
+                  reconquering your city, one avatar at a time.
+                  <br /> <br />
+                  Join our movement, don your {`city's`} colors, rep your
+                  streets because city life {`isn't`} just a game, {`it's`} the
+                  ultimate hustle.
                 </p>
               </div>
             </div>
@@ -154,16 +180,9 @@ function HomePage() {
               </div>
               <div className="md:col-span-5">
                 <p className="md:text-lg mb-10 md:mb-5">
-                  {`Join the Cityboys Syndicate, born and bred in the heart of
-                  crypto, and experience the might of the metropolis as you ride
-                  with the City crew. Our Syndicate embodies our ethos and
-                  hustle, carrying the fervor to etch our city onto the crypto
-                  landscape. With no guarantees, except our communal grind, it's
-                  time to represent your city by securing your $CTB.`}
+                  {`Join the Cityboys Council where crucial discussions about our city are being deliberated, you can also link up with fellow City Boys, as we scheme to elevate the city to uncharted heights.`}
                   <br /> <br />{" "}
-                  {`Join in on the crucial discussions in our
-                  council, link up with fellow City Boys, and help elevate the
-                  city to uncharted heights.`}
+                  {`Join in on the crucial discussions in our council, link up with fellow City Boys, and help elevate the city to uncharted heights.`}
                 </p>
                 <div className="flex gap-x-6">
                   <div className={`${styles["sm-icons"]}`}>
@@ -225,13 +244,25 @@ function HomePage() {
               <div
                 className={`${styles["coin-stats"]} max-w-[679px] m-auto te xt-center md:col-span-4`}
               >
-                <div className="rounded-[20px] py-4 px-16 border items-center border-[#FFEC4A] flex justify-between gap-x-10 mb-10">
-                  <span className="font- bold font-secondary">
-                    PRESALE PRICE
-                  </span>
-                  <span className="text-3xl font-bold">1 CTB = 2 ADA</span>
+                <div className="rounded-[20px] py-4 px-6 sm:px-16 border border-[#FFEC4A] flex flex-col gap-y-4 mb-10">
+                  <div className="items-center flex flex-wrap justify-between gap-x-10">
+                    <span className="font- bold font-secondary whitespace-nowra">
+                      PRESALE PRICE
+                    </span>
+                    <span className="text-3xl font-bold w-[256px]">
+                      1 CTB = 2 ADA
+                    </span>
+                  </div>
+                  <div className="items-center flex flex-wrap justify-between gap-x-10">
+                    <span className="font- bold font-secondary whitespace-nowra">
+                      LISTING PRICE
+                    </span>
+                    <span className="text-3xl font-bold w-[256px]">
+                      1 CTB = 2.5 ADA
+                    </span>
+                  </div>
                 </div>
-                <div className="flex text-center sm:text-left m-auto justify-center flex-wrap sm:grid sm:grid-cols-4 md:grid-cols-3 gap-x-4 gap-y-6">
+                <div className="flex text-center sm:text-left m-auto justify-center flex-wrap sm:grid sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
                   <div className="col-span-1 gap-y-1">
                     <p className="text-sm text-grey-2 font-secondary">
                       Network
@@ -254,25 +285,26 @@ function HomePage() {
                     <p className="text-sm text-grey-2 font-secondary">
                       Token Supply
                     </p>
-                    <p className="text-3xl font-semibold">4 Million</p>
+                    <p className="text-3xl font-semibold">1 Million</p>
                   </div>
                   <div className="col-span-1 gap-y-1">
                     <p className="text-sm text-grey-2 font-secondary">
                       % Sold In Presale
                     </p>
-                    <p className="text-3xl font-semibold">100%</p>
+                    <p className="text-3xl font-semibold">50%</p>
                   </div>
                   <div className="col-span-1 gap-y-1">
                     <p className="text-sm text-grey-2 font-secondary">
                       Tokens Available
                     </p>
-                    <p className="text-3xl font-semibold">4,000,000</p>
+                    <p className="text-3xl font-semibold">650,000</p>
                   </div>
                 </div>
-                <Button 
+                <Button
                   target="_blank"
                   form="primary"
                   className="mt-16"
+                  href="https://docs.city-boys.com/welcome-to-cityboys#ctb-tokenomics"
                 >
                   READ FULL CITYNOMICS
                 </Button>
@@ -303,10 +335,9 @@ function HomePage() {
                       First Phase
                     </p>
                     <ul className="text-grey-1">
-                      <li>City Research</li>
-                      <li>First Founding Fathers of The City</li>
-                      <li>Meeting</li>
-                      <li>City Paper Release</li>
+                      <li>Cityboys Project Unveiling</li>
+                      <li>Citypaper Release</li>
+                      <li>Initial Community Building</li>
                       <li>$CTB Presale Live</li>
                     </ul>
                   </div>
@@ -315,9 +346,9 @@ function HomePage() {
                       Second Phase
                     </p>
                     <ul className="text-grey-1">
-                      <li>Exchange (CEX and DEX Listings)</li>
+                      <li>DEX Listing On Minswap</li>
                       <li>Coinmarketcap & Coingecko Listings</li>
-                      <li>Secure partnerships with Well Known Urban Brands</li>
+                      <li>Partnerships & Integration</li>
                     </ul>
                   </div>
                   <div className="col-span-1 gap-y-1">
@@ -325,12 +356,13 @@ function HomePage() {
                       Third Phase
                     </p>
                     <ul className="text-grey-1">
-                      <li>Cityverse (First Urban Styled Metaverse)</li>
                       <li>
-                        City Burn (Burn Your $CTB Token To Mint Your Cityverse)
+                        CityVerse Layout Release (First Urban Styled Metaverse)
                       </li>
-                      <li>More partnerships</li>
-                      <li>CityVerse RPG Game Release</li>
+                      <li>
+                        City Burn (Burn Your $CTB Token To Mint Your CityVerse)
+                      </li>
+                      <li>Cityverse V1.0 Launch</li>
                     </ul>
                   </div>
                 </div>

@@ -12,26 +12,31 @@ import { useWalletStore } from "store/wallet";
 import toast from "services/toastService";
 import { getBalance, initLucid, lucid } from "utils/lucidUtils";
 
-const PURCHASE_ADDRESS = "addr1q8cal4hqc6qxxcwvhddsyyl7kj8acf4dhh4xuykyk5xxkx475hue5kgfa44h57v80pclaqnshgzdv3kc9tldq3eza3gquuaxdl";
-
+const PURCHASE_ADDRESS =
+  "addr1q8cal4hqc6qxxcwvhddsyyl7kj8acf4dhh4xuykyk5xxkx475hue5kgfa44h57v80pclaqnshgzdv3kc9tldq3eza3gquuaxdl";
 
 const getSaleAmount = async () => {
   const lucidSaleWallet = await initLucid();
   lucidSaleWallet.selectWalletFrom({ address: PURCHASE_ADDRESS });
   const utxos = await lucidSaleWallet.wallet.getUtxos();
   const purchaseWalletBalance = getBalance(utxos);
-  const purchaseWalletBalanceAda = purchaseWalletBalance && purchaseWalletBalance.lovelace ? Number(purchaseWalletBalance.lovelace) / 1000000 : 0;
+  const purchaseWalletBalanceAda =
+    purchaseWalletBalance && purchaseWalletBalance.lovelace
+      ? Number(purchaseWalletBalance.lovelace) / 1000000
+      : 0;
   return purchaseWalletBalanceAda;
-}
+};
 
 const getWalletBalance = async () => {
   if (lucid && lucid.wallet) {
     const walletUtxos = await lucid.wallet.getUtxos();
     const walletBalanceUtxos = getBalance(walletUtxos);
-    return walletBalanceUtxos && walletBalanceUtxos.lovelace ? Number(walletBalanceUtxos.lovelace) / 1000000 : 0;
+    return walletBalanceUtxos && walletBalanceUtxos.lovelace
+      ? Number(walletBalanceUtxos.lovelace) / 1000000
+      : 0;
   }
   return 0;
-}
+};
 
 const saleAmount = Math.round(await getSaleAmount());
 
@@ -67,13 +72,18 @@ export function CountDownBox() {
 
   const FIVE_MINUTES_IN_THE_FUTURE = new Date().getTime() + 5 * 60 * 1000;
 
-
   const purchaseToken = async (amount: number) => {
-    if (amount < 1000) {
-      toast.error("Minimum purchase amount is 1000 ADA");
-      return false;
-    }
     try {
+      if (amount < 1000) {
+        toast.error("Minimum purchase amount is 1000 ADA");
+        return false;
+      }
+      const currentBal = await getWalletBalance();
+      console.log({ currentBal });
+      if (currentBal < 1000) {
+        toast.error("You need to have at least 1000 ADA in your wallet");
+        return false;
+      }
       const tx = await lucid
         .newTx()
         .payToAddress(PURCHASE_ADDRESS, { lovelace: BigInt(amount * 1000000) })
@@ -90,9 +100,8 @@ export function CountDownBox() {
   };
 
   const getMax = async () => {
-    return walletBalance > 0 ? walletBalance - 2 : 0
+    return walletBalance > 0 ? walletBalance - 2 : 0;
   };
-
 
   const handleSetPayValue = (value: string) => {
     let number = parseFloat(value);
@@ -106,11 +115,15 @@ export function CountDownBox() {
     <>
       <div className={`${styles["container"]}`}>
         <div className={`${styles["countdown-container"]} `}>
-          <div className="flex flex-wrap sm:flex-nowrap justify-center text-center my-7 gap-x-3">
+          <div className="flex flex-wrap sm:flex-nowrap justify-center text-center mt-7 mb-4 gap-x-3">
             <span>Presale {PRESALE_STARTED ? "Ends" : "Starts"} In : </span>
             <CountDownTimer
               endTime={PRESALE_STARTED ? presale_end_time : presale_start_Time}
             />
+          </div>
+          <div className="flex mb-5 justify-center text-center items-center gap-x-1">
+            <span>Presale Allocation:</span>
+            <b>500,000 CTB</b>
           </div>
           <div className={`${styles["token-details"]}`}>
             <h2 className="mb-5 text-left">
@@ -120,7 +133,9 @@ export function CountDownBox() {
             <div className="flex justify-between mb-4">
               <div className={`${styles["stats"]}`}>
                 <span className="block mb-1 font-secondary">CTB Sold</span>
-                <span className="block text-grey-1">{Math.round(saleAmount / 2)} CTB</span>
+                <span className="block text-grey-1">
+                  {Math.round(saleAmount / 2)} CTB
+                </span>
               </div>
               <div className={`${styles["stats"]}`}>
                 <span className="block mb-1 font-secondary">Total Raised</span>
@@ -130,82 +145,104 @@ export function CountDownBox() {
             <ProgressBar level={saleLevel} />
             <div className={`mt-5 flex gap-x-3 ${styles["price-container"]} `}>
               <div></div>
-              <div className="relative top-[15px] flex gap-x-5 items-center flex-wrap justify-center">
+              <div className="relative top-[12px] flex gap-x-5 items-center flex-wrap justify-center">
                 <span>Token Price:</span>
                 <span className="font-bold">1 CTB - 2 ADA</span>
               </div>
               <div></div>
             </div>
+            <div className="relative top-[20px] flex gap-x-5 items-center flex-wrap justify-center text-xs">
+              <span>Listing Price:</span>
+              <span className="font-bold">1 CTB - 2.5 ADA</span>
+            </div>
           </div>
         </div>
         <div className={`${styles["purchase-box"]} `}>
-          {address ? (
-            <div>
-              <div className="flex gap-x-3 mb-2">
-                <span className="text-grey-2">ADA Balance:</span>
-                <span className="text-grey-2 font-bold">{walletBalance}</span>
-              </div>
-              <div className={`${styles["pay-input-box"]} mb-[10px] `}>
-                <div className="flex items-center justify-between ">
-                  <div>
-                    <span className="block text-sm font-light mb-1 text-grey-3">
-                      YOU PAY
+          {PRESALE_STARTED ? (
+            <>
+              {address ? (
+                <div>
+                  <div className="flex gap-x-3 mb-2">
+                    <span className="text-grey-2">ADA Balance:</span>
+                    <span className="text-grey-2 font-bold">
+                      {walletBalance.toFixed(2)}
                     </span>
-                    <input
-                      type="tel"
-                      placeholder="0.00"
-                      value={payValue}
-                      onChange={(e) => {
-                        handleSetPayValue(e.target.value);
-                      }}
-                    />
                   </div>
-                  <div className="flex items-center gap-x-3">
-                    <Button
-                      onClick={() => {
-                        // max value logic
-                      }}
-                      form="unstyled"
-                      className={`text-grey-2 ${styles["max-text"]}`}
-                    >
-                      Max.
-                    </Button>
-                    <CoinSelect
-                      onSelect={(coin) => {
-                        // coin selection logic
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className={`${styles["receive-input-box"]}`}>
-                <div className="flex items-center justify-between ">
-                  <div>
-                    <span className="block text-sm font-light mb-1 text-grey-3">
-                      YOU RECEIVE
-                    </span>
-                    <div className={`${styles["receive-box"]}`}>
-                      {receiveValue ? (
-                        <span>{receiveValue}</span>
-                      ) : (
-                        <span className={`${styles["empty"]}`}>0.00</span>
-                      )}
+                  <div className={`${styles["pay-input-box"]} mb-[10px] `}>
+                    <div className="flex items-center justify-between ">
+                      <div>
+                        <span className="block text-sm font-light mb-1 text-grey-3">
+                          YOU PAY
+                        </span>
+                        <input
+                          type="tel"
+                          placeholder="0.00"
+                          value={payValue}
+                          onChange={(e) => {
+                            handleSetPayValue(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <div className="flex items-center gap-x-3">
+                        <Button
+                          onClick={() => {
+                            // max value logic
+                            handleSetPayValue(getMax().toString());
+                          }}
+                          form="unstyled"
+                          className={`text-grey-2 ${styles["max-text"]}`}
+                        >
+                          Max.
+                        </Button>
+                        <CoinSelect
+                          onSelect={(coin) => {
+                            // coin selection logic
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
+                  <div className={`${styles["receive-input-box"]}`}>
+                    <div className="flex items-center justify-between ">
+                      <div>
+                        <span className="block text-sm font-light mb-1 text-grey-3">
+                          YOU RECEIVE
+                        </span>
+                        <div className={`${styles["receive-box"]}`}>
+                          {receiveValue ? (
+                            <span>{receiveValue}</span>
+                          ) : (
+                            <span className={`${styles["empty"]}`}>0.00</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <Button
+                    form="primary"
+                    onClick={() => purchaseToken(parseInt(payValue || "0"))}
+                    className="mt-3 w-full rounded"
+                  >
+                    BUY WITH ADA
+                  </Button>
                 </div>
+              ) : (
+                <div className="flex justify-center">
+                  <ConnectButton text={"Connect Wallet to Purchase"} />
+                </div>
+              )}
+              <div className="flex gap-x-1 gap-y-4 justify-center text-center text-xs mt-4">
+                <span>Not enough ADA?</span>
+                <a
+                  href="https://docs.city-boys.com/how-to-buy-ada"
+                  className="hover:text-red-4 font-bold"
+                >
+                  Buy ADA
+                </a>
               </div>
-              <Button
-                form="primary"
-                onClick={() => purchaseToken(parseInt(payValue || '0'))}
-                className="mt-3 w-full rounded"
-              >
-                BUY WITH ADA
-              </Button>
-            </div>
+            </>
           ) : (
-            <div className="flex justify-center">
-              <ConnectButton text={"Connect Wallet to Purchase"} />
-            </div>
+            <div className="flex justify-center">Coming soon</div>
           )}
         </div>
       </div>

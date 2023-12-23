@@ -1,52 +1,52 @@
-import { DefaultSeo, NextSeo } from "next-seo";
+import { DefaultSeo } from "next-seo";
 
 function DefaultSEOHead() {
   return (
     <>
       <DefaultSeo
-        title="Kompare | Home"
-        description="Kompare is a powerful Chrome extension for converting currencies and tracking stock prices. Try it now!"
+        title="City Boys | Home"
+        description="Cityboys is a Digital Web3 Open World being made possible with Generative AI & Virtual game engines."
         openGraph={{
           type: "website",
           locale: "en_gb",
-          url: "https://kompare.io",
-          site_name: "Kompare",
-          title: "Kompare &amp; Currency converter Chrome Extension | Home",
+          url: "https://city-boys.com",
+          site_name: "City Boys",
+          title: "City Boys | Home",
           description:
-            "Kompare is a powerful Chrome extension for converting currencies and tracking stock prices. Try it now!",
+            "Cityboys is a Digital Web3 Open World being made possible with Generative AI & Virtual game engines.",
           images: [
             {
-              url: "https://res.cloudinary.com/davien21/image/upload/v1680819583/kompare/kompare-opengraph_belz2r.png",
+              url: "https://res.cloudinary.com/davien21/image/upload/v1680819583/city Boys/city Boys-opengraph_belz2r.png",
               width: 1200,
               height: 630,
-              alt: "Kompare Chrome extension",
+              alt: "City Boys Token",
             },
           ],
         }}
         additionalLinkTags={[
           {
             rel: "icon",
-            href: "https://res.cloudinary.com/davien21/image/upload/v1680823364/kompare/favicon_c2gign.ico",
+            href: "https://res.cloudinary.com/davien21/image/upload/v1702905867/city-boys/favicon_rlijke.ico",
             type: "image/x-icon",
           },
           {
             rel: "apple-touch-icon",
-            href: "https://res.cloudinary.com/davien21/image/upload/v1680820915/kompare/60___60_icon_vmjar1.png",
+            href: "https://res.cloudinary.com/davien21/image/upload/v1702905868/city-boys/apple-touch-icon-iphone-60x60_kc0ooo.png",
             sizes: "60x60",
           },
           {
             rel: "apple-touch-icon",
-            href: "https://res.cloudinary.com/davien21/image/upload/v1680820915/kompare/76___76_icon_paxo9q.png",
+            href: "https://res.cloudinary.com/davien21/image/upload/v1702905867/city-boys/apple-touch-icon-ipad-76x76_iuqyvo.png",
             sizes: "76x76",
           },
           {
             rel: "apple-touch-icon",
-            href: "https://res.cloudinary.com/davien21/image/upload/v1680820915/kompare/120___120_icon_dq8dce.png",
+            href: "https://res.cloudinary.com/davien21/image/upload/v1702905868/city-boys/apple-touch-icon-iphone-retina-120x120_bfdvfr.png",
             sizes: "120x120",
           },
           {
             rel: "apple-touch-icon",
-            href: "https://res.cloudinary.com/davien21/image/upload/v1680820915/kompare/152___152_icon_xdwwe0.png",
+            href: "https://res.cloudinary.com/davien21/image/upload/v1702905868/city-boys/apple-touch-icon-ipad-retina-152x152_ykas41.png",
             sizes: "152x152",
           },
           // {
@@ -62,7 +62,7 @@ function DefaultSEOHead() {
           {
             name: "keywords",
             content:
-              "Currency converter, stock price tracker, chrome extension",
+              "$CTB, City Boys, Token Launch",
           },
           {
             name: "theme-color",

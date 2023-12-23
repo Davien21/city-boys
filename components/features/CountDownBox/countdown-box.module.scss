@@ -6,7 +6,7 @@
   z-index: 1;
   isolation: isolate;
   .countdown-container {
-    @apply max-w-[500px] md:max-w-[402px] rounded-lg;
+    @apply max-w-[500px] md:max-w-[420px] rounded-lg;
     border: 4px solid var(--red);
   }
   .token-details {
