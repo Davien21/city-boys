@@ -11,7 +11,6 @@ import styles from "./countdown-box.module.scss";
 import { useWalletStore } from "store/wallet";
 import toast from "services/toastService";
 import { getBalance, initLucid, lucid } from "utils/lucidUtils";
-import { TOTAL_CTB_SUPPLY } from "contracts/addresses";
 
 const PURCHASE_ADDRESS = "addr1q8cal4hqc6qxxcwvhddsyyl7kj8acf4dhh4xuykyk5xxkx475hue5kgfa44h57v80pclaqnshgzdv3kc9tldq3eza3gquuaxdl";
 
@@ -36,7 +35,7 @@ const getWalletBalance = async () => {
 
 const saleAmount = Math.round(await getSaleAmount());
 
-const saleLevel = (saleAmount / TOTAL_CTB_SUPPLY) * 100;
+const saleLevel = (saleAmount / 2000000) * 100;
 
 const walletBalance = Math.round(await getWalletBalance());
 
