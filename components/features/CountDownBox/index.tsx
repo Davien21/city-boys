@@ -41,7 +41,7 @@ const getWalletBalance = async () => {
 
 const saleAmount = Math.round(await getSaleAmount());
 
-const saleLevel = (saleAmount / TOTAL_CTB_SUPPLY) * 100;
+const saleLevel = (saleAmount / (TOTAL_CTB_SUPPLY * 2 /* CTB sale supply * ADA price */)) * 100;
 
 const walletBalance = Math.round(await getWalletBalance());
 
